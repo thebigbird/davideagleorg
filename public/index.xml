@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>David Eagle, PhD. on David Eagle, PhD.</title>
+    <link>/</link>
+    <description>Recent content in David Eagle, PhD. on David Eagle, PhD.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 -0400</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Creating the Reltrad Variable in the General Social Survey Using R</title>
+      <link>/post/reltrad-r/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/reltrad-r/</guid>
+      <description>
+
+
+&lt;p&gt;Haven’t you always wanted an easy to access R script to create the famous &lt;em&gt;reltrad&lt;/em&gt; religious categorizaton in the General Social Survey? Well, today is your lucky day.&lt;/p&gt;
+&lt;p&gt;The measure of religious affiliation described in &lt;span class=&#34;citation&#34;&gt;(Steensland et al. 2000)&lt;/span&gt;, otherwise known as &lt;em&gt;reltrad&lt;/em&gt;, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College. The &lt;em&gt;reltrad&lt;/em&gt; crowd continues to think their measure is pretty good &lt;span class=&#34;citation&#34;&gt;(Woodberry et al. 2012)&lt;/span&gt;. A &lt;em&gt;reltrad&lt;/em&gt; for African Americans has been developed - this is required reading for those who use &lt;em&gt;reltrad&lt;/em&gt; in their research &lt;span class=&#34;citation&#34;&gt;(Shelton and Cobb 2017)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Up until now, the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable from the &lt;a href=&#34;http://gss.norc.org/&#34;&gt;General Social Survey&lt;/a&gt; has only been available in Stata. Stata code for &lt;em&gt;reltrad&lt;/em&gt; is available from &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf&#34;&gt;Lifeway Research&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am providing an R translation of the code. I apply this to the 1972-2016 GSS combined data file.&lt;/p&gt;
+&lt;p&gt;This code takes a GSS datafile and then recodes religious affiliation into the &lt;em&gt;reltrad&lt;/em&gt; scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.&lt;/p&gt;
+&lt;p&gt;I’ve written this code in vanilla R, but resorted to the &lt;em&gt;car&lt;/em&gt; package for easier recoding. The code is pretty well commented, but tweet at me or email me if you have questions.&lt;/p&gt;
+&lt;p&gt;The original R source code for the &lt;em&gt;reltrad&lt;/em&gt; recoding can be accessed from GitHub &lt;a href=&#34;https://github.com/thebigbird/academic/blob/master/content/post/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Not run
+#Get the GSS data, import into a temp file and unzip
+#read in the GSS data
+#Convert to R data format
+#Save
+library(dplyr)
+temp &amp;lt;- tempfile()
+download.file(&amp;quot;http://gss.norc.org/documents/stata/GSS_stata.zip&amp;quot;,temp)
+unzip(temp, files=&amp;quot;GSS7216_R4.DTA&amp;quot;,exdir = &amp;quot;OrigData&amp;quot;)
+unlink(temp);rm(temp)
+gss = haven::read_dta(&amp;quot;OrigData/GSS7216_R4.DTA&amp;quot;)
+save(gss, file = file)
+#Load the data
+load(file)
+#
+#Get the variables we want, this is a huge dataset.
+gss =  gss %&amp;gt;% select(relig, other, race, denom, year, attend, id, wtss)
+save(gss, file=file)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, here is the full code to create &lt;em&gt;reltrad&lt;/em&gt; in R. The data is hosted on my github account and downloaded directly from there. Feel free to fork this code and add your own file path.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(car)
+library(tidyverse)
+library(descr) #Get the rocking CrossTable Function! Weighted! crosstab
+#This is where the R dataset will live:
+urldata = url(&amp;quot;https://github.com/thebigbird/academic/raw/master/static/files/gss7216.data&amp;quot;)
+#
+load(urldata)
+#recode into 5 major categories of religious affiliation
+# 1) Protestant [Ask DENOM] 1371    47.8
+# 2) Catholic
+# 3) Jewish 
+# 4) None   
+# 5) Other (specify)
+# 6) Buddhism
+# 7) Hinduism
+# 8) Other Eastern religion
+# 9) Muslim/Islam
+# 10) Orthodox Christian
+# 11) Christian
+# 12) Native American
+# 13) Inter-/non-denominational
+# 98) Don&amp;#39;t know
+# 99) No answer
+gss$xaffil = car::recode(gss$relig, &amp;quot;1=1;2=4;3=5;4=9;5:10=6;11=1;12=6;13=1&amp;quot;)
+gss$xaffil = as.factor(gss$xaffil)
+levels(gss$xaffil) = c(&amp;quot;prot&amp;quot;, &amp;quot;cath&amp;quot;, &amp;quot;jew&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;nonaf&amp;quot;)
+
+# The following code breaks down religious groups by evangelicals, black
+# Protestants, mainline, liberal and conservative nontraditional,
+# and Protestant nondenomination/no denomination.
+
+#####Black Protestants
+#Create a racial indicator
+gss$black = ifelse(gss$race == &amp;quot;black&amp;quot;, 1, 0)
+gss$white = ifelse(gss$race == &amp;quot;white&amp;quot;, 1, 0)
+#Take the &amp;quot;other&amp;quot; Protestant denominations and pull out the 
+#historical Black denominations, e.g. COGIC
+gss$xbp = gss$other
+gss$xbp = ifelse(gss$xbp %in% c(7, 14, 15, 21, 37, 38, 56, 78, 79, 85, 86, 87, 88, 98, 103, 104, 128, 133), 1, 0)
+#National baptists and AME, AMEZ
+gss$xbp = ifelse(gss$denom %in% c(12, 13, 20, 21), 1, gss$xbp)
+#Blacks in certain denoms get recoded as Black Protestant
+#Other baptist, amer. baptist, south. bap, other Methodists
+gss$xbp[gss$black == 1] = ifelse(gss$denom[gss$black == 1] %in%
+                                   c(10, 11, 18, 23, 13, 14), 1, gss$xbp[gss$black == 1])
+#Black missionary baptists
+gss$xbp[gss$black == 1] = ifelse(gss$other[gss$black == 1] %in%
+                                   c(93), 1, gss$xbp[gss$black == 1])
+
+#Evangelical Protestants#
+#Recode the evangelicals in the other variable
+gss$xev=gss$other
+evother=c(2, 3, 5, 6, 9, 10, 12, 13, 16, 18, 20, 22, 24, 26, 27, 28, 31, 32, 34, 35, 36, 39, 41, 42, 43, 45, 47,51, 52, 53, 55, 57, 63, 65, 66, 67, 68, 69, 76, 77, 83,
+          84, 90, 91, 92, 94, 97, 100, 101, 102, 106, 107, 108, 109, 110, 111, 112, 115, 116, 117, 118, 120, 121, 122, 124, 125, 127, 129, 131, 132, 134, 135, 138, 139, 140, 146)
+gss$xev=ifelse(gss$xev %in% evother,1,0)
+#Cons Lutherans, cons presbyterians
+gss$xev=ifelse(gss$denom %in% c(32,33,34,42), 1, gss$xev)
+#White baptists, white other methodists
+gss$xev[gss$black==0]=ifelse(gss$denom[gss$black==0] %in% 
+                               c(10,18,15,23,14),1,gss$xev[gss$black==0])
+#Missionary baptist
+gss$xev[gss$black==0]=ifelse(as.numeric(gss$other[gss$black==0]) %in%
+                               c(93),1,gss$xev[gss$black==0])
+
+# Mainline Protestants
+#The other category
+gss$xml = gss$other
+mpother=c(1,8,19,23,25,40, 44, 46, 48, 49, 50, 54, 70, 71, 72, 73, 81, 89, 96, 99, 105, 119, 148)
+gss$xml=ifelse(gss$xml %in% mpother,1,0) 
+#The denom category
+gss$xml = ifelse(gss$denom %in% 
+                   c(30, 50, 35, 31, 38, 40, 48, 43, 22, 41),1,gss$xml)
+#Mainline baptist denom and methodists - if the R is white, they get coded mainline
+gss$xml[gss$black==0] = ifelse(gss$denom[gss$denom[gss$black==0]] %in%
+                                 c(11, 28),1,gss$xml[gss$black==0])
+
+#Catholics
+gss$xcath = gss$other 
+#Polish National Church and Catholic
+gss$xcath = ifelse(gss$denom %in% c(123, 28),1,0)
+#People who say that they are other get coded zero
+gss$xcath=ifelse(gss$xaffil==&amp;quot;cath&amp;quot;, 1, gss$xcath) 
+
+#Jews
+gss$xjew=0 
+gss$xjew=ifelse(gss$xaffil==&amp;quot;jew&amp;quot;,1,0)
+
+#Adherents of other religions.
+gss$xother = gss$other
+gss$xother = ifelse(gss$xother %in% 
+                      c(11, 17, 29, 30, 33, 58, 59, 60, 61, 62, 64, 74, 75, 80, 82,
+                        95, 113, 114, 130, 136, 141, 145),1,0)
+#Adds others from main religious recoding
+gss$xother=ifelse(gss$xaffil==&amp;quot;other&amp;quot; &amp;amp; gss$xev==0,1,0)
+
+#Unaffiliateds/Nonaffiliateds
+gss$xnonaff=0
+gss$xnonaff[gss$xaffil==&amp;quot;nonaf&amp;quot;]=1
+
+#The recodes non-denoms based on their attendance 
+#Non active Don&amp;#39;t Know Protestants coded to nonaffil
+gss$xprotdk = ifelse(gss$denom == 70,1,0)
+gss$xprotdk[gss$xprotdk == 1 &amp;amp; gss$attend &amp;gt;= 4] = 0
+#Active Don&amp;#39;t Know Protestants coded to evangelicals
+gss$xnonaff[gss$xprotdk]=1
+gss$xev[gss$xprotdk == 1 &amp;amp; gss$attend &amp;gt;= 4] = 1
+
+#All these folks get coded evangelical
+gss$reltrad = factor(NA, levels=c(&amp;quot;Conservative Protestant&amp;quot;,
+                                  &amp;quot;Mainline Protestant&amp;quot;,
+                                  &amp;quot;Black Protestant&amp;quot;,
+                                  &amp;quot;Roman Catholic&amp;quot;,
+                                  &amp;quot;Other&amp;quot;,
+                                  &amp;quot;None&amp;quot;))
+gss$reltrad[gss$xev==1]=&amp;quot;Conservative Protestant&amp;quot;
+gss$reltrad[gss$xml==1]=&amp;quot;Mainline Protestant&amp;quot;
+gss$reltrad[gss$xbp==1]=&amp;quot;Black Protestant&amp;quot;
+gss$reltrad[gss$xcath==1]=&amp;quot;Roman Catholic&amp;quot;
+gss$reltrad[gss$xother==1]=&amp;quot;Other&amp;quot;
+gss$reltrad[gss$xnonaff==1]=&amp;quot;None&amp;quot;
+save(gss,file=&amp;quot;gss7216_reltrad.data&amp;quot;)
+gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper &lt;em&gt;crosstab( )&lt;/em&gt; for the &lt;em&gt;CrossTable( )&lt;/em&gt; function in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/descr/descr.pdf&#34;&gt;descr&lt;/a&gt;. It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(
+  crosstab(gss$year,gss$reltrad,
+           weight = gss$wtss, prop.c = T, prop.r = T, prop.t = F, 
+           total.c = F, plot = F))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Cell Contents 
+## |-------------------------|
+## |                   Count | 
+## |             Row Percent | 
+## |          Column Percent | 
+## |-------------------------|
+## 
+## =========================================================================
+##             gss$reltrad
+## gss$year    Cnsrvtv P   Mnln Prts   Blck Prts   Rmn Cthlc   Other    None
+## -------------------------------------------------------------------------
+## 1972             325         427          11         645      27      84 
+##                 21.4%       28.1%        0.7%       42.5%    1.8%    5.5%
+##                  2.6%        2.6%        1.1%        3.6%    1.6%    1.2%
+## -------------------------------------------------------------------------
+## 1973             317         368          17         586      30      96 
+##                 22.4%       26.0%        1.2%       41.4%    2.1%    6.8%
+##                  2.5%        2.3%        1.7%        3.3%    1.8%    1.3%
+## -------------------------------------------------------------------------
+## 1974             322         392           7         566       8     101 
+##                 23.1%       28.1%        0.5%       40.5%    0.6%    7.2%
+##                  2.5%        2.4%        0.7%        3.2%    0.5%    1.4%
+## -------------------------------------------------------------------------
+## 1975             309         427          14         538      14     113 
+##                 21.8%       30.2%        1.0%       38.0%    1.0%    8.0%
+##                  2.4%        2.6%        1.4%        3.0%    0.8%    1.6%
+## -------------------------------------------------------------------------
+## 1976             303         415          11         552      15     114 
+##                 21.5%       29.4%        0.8%       39.1%    1.1%    8.1%
+##                  2.4%        2.6%        1.1%        3.1%    0.9%    1.6%
+## -------------------------------------------------------------------------
+## 1977             324         419          10         566      18      93 
+##                 22.7%       29.3%        0.7%       39.6%    1.3%    6.5%
+##                  2.6%        2.6%        1.0%        3.2%    1.1%    1.3%
+## -------------------------------------------------------------------------
+## 1978             318         414          10         574      17     119 
+##                 21.9%       28.5%        0.7%       39.5%    1.2%    8.2%
+##                  2.5%        2.5%        1.0%        3.2%    1.0%    1.6%
+## -------------------------------------------------------------------------
+## 1980             307         398           9         532      30     105 
+##                 22.2%       28.8%        0.7%       38.5%    2.2%    7.6%
+##                  2.4%        2.4%        0.9%        3.0%    1.8%    1.5%
+## -------------------------------------------------------------------------
+## 1982             478         465          32         609      21     132 
+##                 27.5%       26.8%        1.8%       35.1%    1.2%    7.6%
+##                  3.8%        2.9%        3.2%        3.4%    1.2%    1.8%
+## -------------------------------------------------------------------------
+## 1983             303         463          10         586      26     117 
+##                 20.1%       30.8%        0.7%       38.9%    1.7%    7.8%
+##                  2.4%        2.8%        1.0%        3.3%    1.5%    1.6%
+## -------------------------------------------------------------------------
+## 1984             321         486          34         393      20     107 
+##                 23.6%       35.7%        2.5%       28.9%    1.5%    7.9%
+##                  2.5%        3.0%        3.4%        2.2%    1.2%    1.5%
+## -------------------------------------------------------------------------
+## 1985             364         479          30         433      25     109 
+##                 25.3%       33.3%        2.1%       30.1%    1.7%    7.6%
+##                  2.9%        2.9%        3.0%        2.4%    1.5%    1.5%
+## -------------------------------------------------------------------------
+## 1986             337         471          29         398      31      98 
+##                 24.7%       34.5%        2.1%       29.2%    2.3%    7.2%
+##                  2.7%        2.9%        2.9%        2.2%    1.8%    1.4%
+## -------------------------------------------------------------------------
+## 1987             498         551          98         396      40     121 
+##                 29.2%       32.3%        5.8%       23.2%    2.3%    7.1%
+##                  3.9%        3.4%        9.8%        2.2%    2.4%    1.7%
+## -------------------------------------------------------------------------
+## 1988             340         445          27         399      42     118 
+##                 24.8%       32.5%        2.0%       29.1%    3.1%    8.6%
+##                  2.7%        2.7%        2.7%        2.2%    2.5%    1.6%
+## -------------------------------------------------------------------------
+## 1989             342         480          34         403      34     120 
+##                 24.2%       34.0%        2.4%       28.5%    2.4%    8.5%
+##                  2.7%        3.0%        3.4%        2.3%    2.0%    1.7%
+## -------------------------------------------------------------------------
+## 1990             258         469          34         343      42     109 
+##                 20.6%       37.4%        2.7%       27.3%    3.3%    8.7%
+##                  2.0%        2.9%        3.4%        1.9%    2.5%    1.5%
+## -------------------------------------------------------------------------
+## 1991             322         524          42         398      29     102 
+##                 22.7%       37.0%        3.0%       28.1%    2.0%    7.2%
+##                  2.5%        3.2%        4.2%        2.2%    1.7%    1.4%
+## -------------------------------------------------------------------------
+## 1993             376         498          35         374      42     146 
+##                 25.6%       33.9%        2.4%       25.4%    2.9%    9.9%
+##                  3.0%        3.1%        3.5%        2.1%    2.5%    2.0%
+## -------------------------------------------------------------------------
+## 1994             714         840          39         791     115     274 
+##                 25.7%       30.3%        1.4%       28.5%    4.1%    9.9%
+##                  5.6%        5.2%        3.9%        4.4%    6.8%    3.8%
+## -------------------------------------------------------------------------
+## 1996             685         778          45         708     143     339 
+##                 25.4%       28.8%        1.7%       26.2%    5.3%   12.6%
+##                  5.4%        4.8%        4.5%        4.0%    8.5%    4.7%
+## -------------------------------------------------------------------------
+## 1998             629         674          52         735      70     396 
+##                 24.6%       26.4%        2.0%       28.8%    2.7%   15.5%
+##                  5.0%        4.1%        5.2%        4.1%    4.2%    5.5%
+## -------------------------------------------------------------------------
+## 2000             591         673          66         709      96     398 
+##                 23.3%       26.6%        2.6%       28.0%    3.8%   15.7%
+##                  4.7%        4.1%        6.6%        4.0%    5.7%    5.5%
+## -------------------------------------------------------------------------
+## 2002             501         703          56         707      91     379 
+##                 20.6%       28.8%        2.3%       29.0%    3.7%   15.6%
+##                  3.9%        4.3%        5.6%        4.0%    5.4%    5.2%
+## -------------------------------------------------------------------------
+## 2004             521         655          39         721     113     394 
+##                 21.3%       26.8%        1.6%       29.5%    4.6%   16.1%
+##                  4.1%        4.0%        3.9%        4.0%    6.7%    5.5%
+## -------------------------------------------------------------------------
+## 2006             792        1018          82        1247     128     711 
+##                 19.9%       25.6%        2.1%       31.3%    3.2%   17.9%
+##                  6.2%        6.3%        8.2%        7.0%    7.6%    9.8%
+## -------------------------------------------------------------------------
+## 2008             341         469          23         535      62     338 
+##                 19.3%       26.5%        1.3%       30.3%    3.5%   19.1%
+##                  2.7%        2.9%        2.3%        3.0%    3.7%    4.7%
+## -------------------------------------------------------------------------
+## 2010             368         414          23         538      70     365 
+##                 20.7%       23.3%        1.3%       30.3%    3.9%   20.5%
+##                  2.9%        2.5%        2.3%        3.0%    4.2%    5.1%
+## -------------------------------------------------------------------------
+## 2012             309         414          14         496      82     388 
+##                 18.1%       24.3%        0.8%       29.1%    4.8%   22.8%
+##                  2.4%        2.5%        1.4%        2.8%    4.9%    5.4%
+## -------------------------------------------------------------------------
+## 2014             351         506          33         657      97     520 
+##                 16.2%       23.4%        1.5%       30.4%    4.5%   24.0%
+##                  2.8%        3.1%        3.3%        3.7%    5.8%    7.2%
+## -------------------------------------------------------------------------
+## 2016             437         533          29         689     107     618 
+##                 18.1%       22.1%        1.2%       28.6%    4.4%   25.6%
+##                  3.4%        3.3%        2.9%        3.9%    6.4%    8.6%
+## =========================================================================&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level3 unnumbered&#34;&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-sheltonBlackReltradMeasuring2017&#34;&gt;
+&lt;p&gt;Shelton, Jason E., and Ryon J. Cobb. 2017. “Black Reltrad: Measuring Religious Diversity and Commonality Among African Americans.” &lt;em&gt;Journal for the Scientific Study of Religion&lt;/em&gt; 56 (4): 737–64. &lt;a href=&#34;https://doi.org/10/gfgw25&#34;&gt;https://doi.org/10/gfgw25&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-steenslandMeasureAmericanReligion2000&#34;&gt;
+&lt;p&gt;Steensland, B., L. D. Robinson, W. B. Wilcox, J. Z. Park, M. D. Regnerus, and R. D. Woodberry. 2000. “The Measure of American Religion: Toward Improving the State of the Art.” &lt;em&gt;Social Forces&lt;/em&gt; 79 (1): 291–318. &lt;a href=&#34;https://doi.org/10/db9hrh&#34;&gt;https://doi.org/10/db9hrh&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-woodberryMeasureAmericanReligious2012&#34;&gt;
+&lt;p&gt;Woodberry, R. D., J. Z. Park, L. A. Kellstedt, M. D. Regnerus, and B. Steensland. 2012. “The Measure of American Religious Traditions: Theoretical and Measurement Considerations.” &lt;em&gt;Social Forces&lt;/em&gt; 91 (1): 65–73. &lt;a href=&#34;https://doi.org/10.1093/sf/sos121&#34;&gt;https://doi.org/10.1093/sf/sos121&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Page</title>
+      <link>/tutorial/example/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 -0400</pubDate>
+      
+      <guid>/tutorial/example/</guid>
+      <description>
+
+&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
+
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
+
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Privacy Policy</title>
+      <link>/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 -0400</pubDate>
+      
+      <guid>/privacy/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Disentangling Race and Socioeconomic Status in HealthDisparities Research: an Examination of Black and White Clergy</title>
+      <link>/publication/2018-01-01_case_disentangling_2018/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2018-01-01_case_disentangling_2018/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Household Charitable Giving at the Intersection of Gender, Marital Status, and Religion</title>
+      <link>/publication/2018-01-01_eagle_household_2018/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2018-01-01_eagle_household_2018/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Perceived social support, received social support, and depression among clergy</title>
+      <link>/publication/2018-01-01_eagle_perceived_2018/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2018-01-01_eagle_perceived_2018/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A 2-Year Holistic Health and Stress Intervention: Results of an RCT in Clergy</title>
+      <link>/publication/2017-01-01_proeschold-bell_2-year_2017/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2017-01-01_proeschold-bell_2-year_2017/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prospective Associations Between Depressive Symptoms and the Metabolic Syndrome: the Spirited Life Study of Methodist Pastors in North Carolina</title>
+      <link>/publication/2017-01-01_smith_prospective_2017/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2017-01-01_smith_prospective_2017/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Honeymoon is Over: Occupational Relocation and Changes in Mental Health Among United Methodist Clergy</title>
+      <link>/publication/2017-01-01_eagle_honeymoon_2017/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2017-01-01_eagle_honeymoon_2017/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>External Project</title>
+      <link>/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      
+      <guid>/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project</title>
+      <link>/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      
+      <guid>/project/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Negative Relationship between Size and the Probability of Weekly Attendance in Churches in the United States</title>
+      <link>/publication/2016-01-01_eagle_negative_2016/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2016-01-01_eagle_negative_2016/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Farmland Protection and Agricultural Land Values at the Urban-Rural Fringe: British Columbia’s Agricultural Land Reserve</title>
+      <link>/publication/2015-01-01_eagle_farmland_2015/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2015-01-01_eagle_farmland_2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Historicizing the Megachurch</title>
+      <link>/publication/2015-01-01_eagle_historicizing_2015/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2015-01-01_eagle_historicizing_2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Methodological considerations in the use of name generators and interpreters</title>
+      <link>/publication/2015-01-01_eagle_methodological_2015/</link>
+      <pubDate>Thu, 01 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/2015-01-01_eagle_methodological_2015/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

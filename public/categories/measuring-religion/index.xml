@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Measuring religion on David Eagle, PhD.</title>
+    <link>/categories/measuring-religion/</link>
+    <description>Recent content in Measuring religion on David Eagle, PhD.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Tue, 06 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/measuring-religion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating the Reltrad Variable in the General Social Survey Using R</title>
+      <link>/post/reltrad-r/</link>
+      <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/reltrad-r/</guid>
+      <description>Haven’t you always wanted an easy to access R script to create the famous reltrad religious categorizaton in the General Social Survey? Well, today is your lucky day.
+The measure of religious affiliation described in (Steensland et al. 2000), otherwise known as reltrad, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College.</description>
+    </item>
+    
+  </channel>
+</rss>
