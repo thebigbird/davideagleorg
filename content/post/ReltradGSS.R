@@ -1,7 +1,7 @@
 ## @knitr ReltradCode
 
 library(car)
-library(tidyverse)
+#library(tidyverse)
 library(descr) #Get the rocking CrossTable Function! Weighted! crosstab
 #This is where the R dataset will live:
 urldata = url("https://github.com/thebigbird/academic/raw/master/static/files/gss7216.data")
@@ -64,8 +64,27 @@ gss$xev[gss$black==0]=ifelse(gss$denom[gss$black==0] %in%
 gss$xev[gss$black==0]=ifelse(as.numeric(gss$other[gss$black==0]) %in%
                                c(93),1,gss$xev[gss$black==0])
 
+#Lifeway correction to reltrad
+gss$xtn = gss$relig
+gss$denom2 = gss$denom
+#70 = No denomination or non-denominations
+gss$denom2 = recode(gss$denom2, "70=1; else=0")
+gss$xtn = recode(gss$xtn, "11=1; else=0")
+gss$xtn[gss$denom2 == 1] = 2
+gss$xtn = recode(gss$xtn, "1=1; 2=0")
+#Only weekly or +weekly attenders
+gss$xtn[gss$attend < 4|gss$attend==3|gss$attend==0|is.na(gss$attend)] <- 0
+gss$xev[gss$xtn ==1] <- 1
+
+gss$inter <- gss$relig
+#Interdenominationals
+gss$inter <- recode(gss$inter, "13=1; else=0")
+gss$inter[gss$attend < 4|gss$attend==3|gss$attend==0|is.na(gss$attend)] <- 0
+gss$xev[gss$inter ==1] <- 1
+
 # Mainline Protestants
 #The other category
+gss$xml = NA
 gss$xml = gss$other
 mpother=c(1,8,19,23,25,40, 44, 46, 48, 49, 50, 54, 70, 71, 72, 73, 81, 89, 96, 99, 105, 119, 148)
 gss$xml=ifelse(gss$xml %in% mpother,1,0) 
@@ -122,11 +141,4 @@ gss$reltrad[gss$xother==1]="Other"
 gss$reltrad[gss$xnonaff==1]="None"
 save(gss,file="gss7216_reltrad.data")
 gss$year = as.factor(gss$year)
-
-
-## @knitr ReltradTable
-
-print(
-  crosstab(gss$year,gss$reltrad,
-           weight = gss$wtss, prop.c = T, prop.r = T, prop.t = F, 
-           total.c = F, plot = F))
+#End of my poorly written R code! Sorry - I'll clean it up some day!

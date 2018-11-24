@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 -0600</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
@@ -21,11 +21,11 @@
 
 &lt;p&gt;Haven’t you always wanted an easy to access R script to create the famous &lt;em&gt;reltrad&lt;/em&gt; religious categorizaton in the General Social Survey? Well, today is your lucky day.&lt;/p&gt;
 &lt;p&gt;The measure of religious affiliation described in &lt;span class=&#34;citation&#34;&gt;(Steensland et al. 2000)&lt;/span&gt;, otherwise known as &lt;em&gt;reltrad&lt;/em&gt;, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College. The &lt;em&gt;reltrad&lt;/em&gt; crowd continues to think their measure is pretty good &lt;span class=&#34;citation&#34;&gt;(Woodberry et al. 2012)&lt;/span&gt;. A &lt;em&gt;reltrad&lt;/em&gt; for African Americans has been developed - this is required reading for those who use &lt;em&gt;reltrad&lt;/em&gt; in their research &lt;span class=&#34;citation&#34;&gt;(Shelton and Cobb 2017)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Up until now, the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable from the &lt;a href=&#34;http://gss.norc.org/&#34;&gt;General Social Survey&lt;/a&gt; has only been available in Stata. Stata code for &lt;em&gt;reltrad&lt;/em&gt; is available from &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf&#34;&gt;Lifeway Research&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I am providing an R translation of the code. I apply this to the 1972-2016 GSS combined data file.&lt;/p&gt;
+&lt;p&gt;Up until now, the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable from the &lt;a href=&#34;http://gss.norc.org/&#34;&gt;General Social Survey&lt;/a&gt; has only been available in PDF. Stata code for &lt;em&gt;reltrad&lt;/em&gt; is available from &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf&#34;&gt;Lifeway Research&lt;/a&gt;. Lifeway also published &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2017/02/reltrad-R-Coding-2.19.2016.pdf&#34;&gt;R code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here, I am providing an additional R translation of the code that is more reproducible and up on Github for the community to use easily. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by &lt;span class=&#34;citation&#34;&gt;(Stetzer and Burge 2016)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;This code takes a GSS datafile and then recodes religious affiliation into the &lt;em&gt;reltrad&lt;/em&gt; scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.&lt;/p&gt;
-&lt;p&gt;I’ve written this code in vanilla R, but resorted to the &lt;em&gt;car&lt;/em&gt; package for easier recoding. The code is pretty well commented, but tweet at me or email me if you have questions.&lt;/p&gt;
-&lt;p&gt;The original R source code for the &lt;em&gt;reltrad&lt;/em&gt; recoding can be accessed from GitHub &lt;a href=&#34;https://github.com/thebigbird/academic/blob/master/content/post/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve written this code in vanilla R, but resorted to the &lt;em&gt;car&lt;/em&gt; package for easier recoding. The code is pretty well commented, but tweet at me or email me if you have questions. It’s also bad code that I wrote a long while ago. I’d do this differently with dplyr.&lt;/p&gt;
+&lt;p&gt;First, here’s how to get the NORC data down:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Not run
 #Get the GSS data, import into a temp file and unzip
 #read in the GSS data
@@ -44,9 +44,9 @@ load(file)
 #Get the variables we want, this is a huge dataset.
 gss =  gss %&amp;gt;% select(relig, other, race, denom, year, attend, id, wtss)
 save(gss, file=file)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now, here is the full code to create &lt;em&gt;reltrad&lt;/em&gt; in R. The data is hosted on my github account and downloaded directly from there. Feel free to fork this code and add your own file path.&lt;/p&gt;
+&lt;p&gt;Now, here is the full code to create &lt;em&gt;reltrad&lt;/em&gt; in R. The original R source code for the &lt;em&gt;reltrad&lt;/em&gt; recoding can be accessed from GitHub &lt;a href=&#34;https://github.com/thebigbird/academic/blob/master/content/post/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.Feel free to fork this code and add your own file path.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(car)
-library(tidyverse)
+#library(tidyverse)
 library(descr) #Get the rocking CrossTable Function! Weighted! crosstab
 #This is where the R dataset will live:
 urldata = url(&amp;quot;https://github.com/thebigbird/academic/raw/master/static/files/gss7216.data&amp;quot;)
@@ -109,8 +109,27 @@ gss$xev[gss$black==0]=ifelse(gss$denom[gss$black==0] %in%
 gss$xev[gss$black==0]=ifelse(as.numeric(gss$other[gss$black==0]) %in%
                                c(93),1,gss$xev[gss$black==0])
 
+#Lifeway correction to reltrad
+gss$xtn = gss$relig
+gss$denom2 = gss$denom
+#70 = No denomination or non-denominations
+gss$denom2 = recode(gss$denom2, &amp;quot;70=1; else=0&amp;quot;)
+gss$xtn = recode(gss$xtn, &amp;quot;11=1; else=0&amp;quot;)
+gss$xtn[gss$denom2 == 1] = 2
+gss$xtn = recode(gss$xtn, &amp;quot;1=1; 2=0&amp;quot;)
+#Only weekly or +weekly attenders
+gss$xtn[gss$attend &amp;lt; 4|gss$attend==3|gss$attend==0|is.na(gss$attend)] &amp;lt;- 0
+gss$xev[gss$xtn ==1] &amp;lt;- 1
+
+gss$inter &amp;lt;- gss$relig
+#Interdenominationals
+gss$inter &amp;lt;- recode(gss$inter, &amp;quot;13=1; else=0&amp;quot;)
+gss$inter[gss$attend &amp;lt; 4|gss$attend==3|gss$attend==0|is.na(gss$attend)] &amp;lt;- 0
+gss$xev[gss$inter ==1] &amp;lt;- 1
+
 # Mainline Protestants
 #The other category
+gss$xml = NA
 gss$xml = gss$other
 mpother=c(1,8,19,23,25,40, 44, 46, 48, 49, 50, 54, 70, 71, 72, 73, 81, 89, 96, 99, 105, 119, 148)
 gss$xml=ifelse(gss$xml %in% mpother,1,0) 
@@ -166,9 +185,11 @@ gss$reltrad[gss$xcath==1]=&amp;quot;Roman Catholic&amp;quot;
 gss$reltrad[gss$xother==1]=&amp;quot;Other&amp;quot;
 gss$reltrad[gss$xnonaff==1]=&amp;quot;None&amp;quot;
 save(gss,file=&amp;quot;gss7216_reltrad.data&amp;quot;)
-gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
+gss$year = as.factor(gss$year)
+#End of my poorly written R code! Sorry - I&amp;#39;ll clean it up some day!&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper &lt;em&gt;crosstab( )&lt;/em&gt; for the &lt;em&gt;CrossTable( )&lt;/em&gt; function in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/descr/descr.pdf&#34;&gt;descr&lt;/a&gt;. It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## @knitr ReltradTable
+print(
   crosstab(gss$year,gss$reltrad,
            weight = gss$wtss, prop.c = T, prop.r = T, prop.t = F, 
            total.c = F, plot = F))&lt;/code&gt;&lt;/pre&gt;
@@ -185,7 +206,7 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 ## -------------------------------------------------------------------------
 ## 1972             325         427          11         645      27      84 
 ##                 21.4%       28.1%        0.7%       42.5%    1.8%    5.5%
-##                  2.6%        2.6%        1.1%        3.6%    1.6%    1.2%
+##                  2.5%        2.6%        1.1%        3.6%    1.6%    1.2%
 ## -------------------------------------------------------------------------
 ## 1973             317         368          17         586      30      96 
 ##                 22.4%       26.0%        1.2%       41.4%    2.1%    6.8%
@@ -201,11 +222,11 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 ## -------------------------------------------------------------------------
 ## 1976             303         415          11         552      15     114 
 ##                 21.5%       29.4%        0.8%       39.1%    1.1%    8.1%
-##                  2.4%        2.6%        1.1%        3.1%    0.9%    1.6%
+##                  2.3%        2.6%        1.1%        3.1%    0.9%    1.6%
 ## -------------------------------------------------------------------------
 ## 1977             324         419          10         566      18      93 
 ##                 22.7%       29.3%        0.7%       39.6%    1.3%    6.5%
-##                  2.6%        2.6%        1.0%        3.2%    1.1%    1.3%
+##                  2.5%        2.6%        1.0%        3.2%    1.1%    1.3%
 ## -------------------------------------------------------------------------
 ## 1978             318         414          10         574      17     119 
 ##                 21.9%       28.5%        0.7%       39.5%    1.2%    8.2%
@@ -217,11 +238,11 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 ## -------------------------------------------------------------------------
 ## 1982             478         465          32         609      21     132 
 ##                 27.5%       26.8%        1.8%       35.1%    1.2%    7.6%
-##                  3.8%        2.9%        3.2%        3.4%    1.2%    1.8%
+##                  3.7%        2.9%        3.2%        3.4%    1.2%    1.8%
 ## -------------------------------------------------------------------------
 ## 1983             303         463          10         586      26     117 
 ##                 20.1%       30.8%        0.7%       38.9%    1.7%    7.8%
-##                  2.4%        2.8%        1.0%        3.3%    1.5%    1.6%
+##                  2.3%        2.8%        1.0%        3.3%    1.5%    1.6%
 ## -------------------------------------------------------------------------
 ## 1984             321         486          34         393      20     107 
 ##                 23.6%       35.7%        2.5%       28.9%    1.5%    7.9%
@@ -229,11 +250,11 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 ## -------------------------------------------------------------------------
 ## 1985             364         479          30         433      25     109 
 ##                 25.3%       33.3%        2.1%       30.1%    1.7%    7.6%
-##                  2.9%        2.9%        3.0%        2.4%    1.5%    1.5%
+##                  2.8%        2.9%        3.0%        2.4%    1.5%    1.5%
 ## -------------------------------------------------------------------------
 ## 1986             337         471          29         398      31      98 
 ##                 24.7%       34.5%        2.1%       29.2%    2.3%    7.2%
-##                  2.7%        2.9%        2.9%        2.2%    1.8%    1.4%
+##                  2.6%        2.9%        2.9%        2.2%    1.8%    1.4%
 ## -------------------------------------------------------------------------
 ## 1987             498         551          98         396      40     121 
 ##                 29.2%       32.3%        5.8%       23.2%    2.3%    7.1%
@@ -241,11 +262,11 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 ## -------------------------------------------------------------------------
 ## 1988             340         445          27         399      42     118 
 ##                 24.8%       32.5%        2.0%       29.1%    3.1%    8.6%
-##                  2.7%        2.7%        2.7%        2.2%    2.5%    1.6%
+##                  2.6%        2.7%        2.7%        2.2%    2.5%    1.6%
 ## -------------------------------------------------------------------------
 ## 1989             342         480          34         403      34     120 
 ##                 24.2%       34.0%        2.4%       28.5%    2.4%    8.5%
-##                  2.7%        3.0%        3.4%        2.3%    2.0%    1.7%
+##                  2.6%        3.0%        3.4%        2.3%    2.0%    1.7%
 ## -------------------------------------------------------------------------
 ## 1990             258         469          34         343      42     109 
 ##                 20.6%       37.4%        2.7%       27.3%    3.3%    8.7%
@@ -257,54 +278,54 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 ## -------------------------------------------------------------------------
 ## 1993             376         498          35         374      42     146 
 ##                 25.6%       33.9%        2.4%       25.4%    2.9%    9.9%
-##                  3.0%        3.1%        3.5%        2.1%    2.5%    2.0%
+##                  2.9%        3.1%        3.5%        2.1%    2.5%    2.0%
 ## -------------------------------------------------------------------------
 ## 1994             714         840          39         791     115     274 
 ##                 25.7%       30.3%        1.4%       28.5%    4.1%    9.9%
-##                  5.6%        5.2%        3.9%        4.4%    6.8%    3.8%
+##                  5.5%        5.2%        3.9%        4.4%    6.8%    3.8%
 ## -------------------------------------------------------------------------
 ## 1996             685         778          45         708     143     339 
 ##                 25.4%       28.8%        1.7%       26.2%    5.3%   12.6%
-##                  5.4%        4.8%        4.5%        4.0%    8.5%    4.7%
+##                  5.3%        4.8%        4.5%        4.0%    8.5%    4.7%
 ## -------------------------------------------------------------------------
-## 1998             629         674          52         735      70     396 
-##                 24.6%       26.4%        2.0%       28.8%    2.7%   15.5%
-##                  5.0%        4.1%        5.2%        4.1%    4.2%    5.5%
+## 1998             662         674          52         735      70     396 
+##                 25.6%       26.0%        2.0%       28.4%    2.7%   15.3%
+##                  5.1%        4.1%        5.2%        4.1%    4.2%    5.5%
 ## -------------------------------------------------------------------------
-## 2000             591         673          66         709      96     398 
-##                 23.3%       26.6%        2.6%       28.0%    3.8%   15.7%
-##                  4.7%        4.1%        6.6%        4.0%    5.7%    5.5%
+## 2000             620         673          66         709      96     398 
+##                 24.2%       26.3%        2.6%       27.7%    3.7%   15.5%
+##                  4.8%        4.1%        6.6%        4.0%    5.7%    5.5%
 ## -------------------------------------------------------------------------
-## 2002             501         703          56         707      91     379 
-##                 20.6%       28.8%        2.3%       29.0%    3.7%   15.6%
-##                  3.9%        4.3%        5.6%        4.0%    5.4%    5.2%
+## 2002             554         703          56         707      91     379 
+##                 22.2%       28.2%        2.2%       28.4%    3.7%   15.2%
+##                  4.3%        4.3%        5.6%        4.0%    5.4%    5.2%
 ## -------------------------------------------------------------------------
-## 2004             521         655          39         721     113     394 
-##                 21.3%       26.8%        1.6%       29.5%    4.6%   16.1%
-##                  4.1%        4.0%        3.9%        4.0%    6.7%    5.5%
+## 2004             537         655          39         721     113     394 
+##                 21.8%       26.6%        1.6%       29.3%    4.6%   16.0%
+##                  4.2%        4.0%        3.9%        4.0%    6.7%    5.5%
 ## -------------------------------------------------------------------------
-## 2006             792        1018          82        1247     128     711 
+## 2006             793        1018          82        1247     128     711 
 ##                 19.9%       25.6%        2.1%       31.3%    3.2%   17.9%
-##                  6.2%        6.3%        8.2%        7.0%    7.6%    9.8%
+##                  6.1%        6.3%        8.2%        7.0%    7.6%    9.8%
 ## -------------------------------------------------------------------------
-## 2008             341         469          23         535      62     338 
-##                 19.3%       26.5%        1.3%       30.3%    3.5%   19.1%
-##                  2.7%        2.9%        2.3%        3.0%    3.7%    4.7%
+## 2008             342         469          23         535      62     338 
+##                 19.3%       26.5%        1.3%       30.2%    3.5%   19.1%
+##                  2.6%        2.9%        2.3%        3.0%    3.7%    4.7%
 ## -------------------------------------------------------------------------
-## 2010             368         414          23         538      70     365 
-##                 20.7%       23.3%        1.3%       30.3%    3.9%   20.5%
+## 2010             378         414          23         538      70     365 
+##                 21.1%       23.2%        1.3%       30.1%    3.9%   20.4%
 ##                  2.9%        2.5%        2.3%        3.0%    4.2%    5.1%
 ## -------------------------------------------------------------------------
-## 2012             309         414          14         496      82     388 
-##                 18.1%       24.3%        0.8%       29.1%    4.8%   22.8%
-##                  2.4%        2.5%        1.4%        2.8%    4.9%    5.4%
+## 2012             381         414          14         496      82     388 
+##                 21.5%       23.3%        0.8%       27.9%    4.6%   21.9%
+##                  2.9%        2.5%        1.4%        2.8%    4.9%    5.4%
 ## -------------------------------------------------------------------------
-## 2014             351         506          33         657      97     520 
-##                 16.2%       23.4%        1.5%       30.4%    4.5%   24.0%
-##                  2.8%        3.1%        3.3%        3.7%    5.8%    7.2%
+## 2014             352         506          33         657      97     520 
+##                 16.3%       23.4%        1.5%       30.3%    4.5%   24.0%
+##                  2.7%        3.1%        3.3%        3.7%    5.8%    7.2%
 ## -------------------------------------------------------------------------
-## 2016             437         533          29         689     107     618 
-##                 18.1%       22.1%        1.2%       28.6%    4.4%   25.6%
+## 2016             438         533          29         689     107     618 
+##                 18.1%       22.1%        1.2%       28.5%    4.4%   25.6%
 ##                  3.4%        3.3%        2.9%        3.9%    6.4%    8.6%
 ## =========================================================================&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;references&#34; class=&#34;section level3 unnumbered&#34;&gt;
@@ -315,6 +336,9 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-steenslandMeasureAmericanReligion2000&#34;&gt;
 &lt;p&gt;Steensland, B., L. D. Robinson, W. B. Wilcox, J. Z. Park, M. D. Regnerus, and R. D. Woodberry. 2000. “The Measure of American Religion: Toward Improving the State of the Art.” &lt;em&gt;Social Forces&lt;/em&gt; 79 (1): 291–318. &lt;a href=&#34;https://doi.org/10/db9hrh&#34;&gt;https://doi.org/10/db9hrh&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-stetzerReltradCodingProblems2016&#34;&gt;
+&lt;p&gt;Stetzer, Ed, and Ryan P. Burge. 2016. “Reltrad Coding Problems and a New Repository.” &lt;em&gt;Politics and Religion&lt;/em&gt; 9 (01): 187–90. &lt;a href=&#34;https://doi.org/10/gfkc5x&#34;&gt;https://doi.org/10/gfkc5x&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-woodberryMeasureAmericanReligious2012&#34;&gt;
 &lt;p&gt;Woodberry, R. D., J. Z. Park, L. A. Kellstedt, M. D. Regnerus, and B. Steensland. 2012. “The Measure of American Religious Traditions: Theoretical and Measurement Considerations.” &lt;em&gt;Social Forces&lt;/em&gt; 91 (1): 65–73. &lt;a href=&#34;https://doi.org/10.1093/sf/sos121&#34;&gt;https://doi.org/10.1093/sf/sos121&lt;/a&gt;.&lt;/p&gt;
@@ -327,7 +351,7 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>Example Page</title>
       <link>/tutorial/example/</link>
-      <pubDate>Sun, 09 Sep 2018 00:00:00 -0400</pubDate>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 -0600</pubDate>
       
       <guid>/tutorial/example/</guid>
       <description>
@@ -347,7 +371,7 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>Privacy Policy</title>
       <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 -0400</pubDate>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 -0600</pubDate>
       
       <guid>/privacy/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
@@ -411,7 +435,7 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>External Project</title>
       <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0600</pubDate>
       
       <guid>/project/external-project/</guid>
       <description></description>
@@ -420,7 +444,7 @@ gss$year = as.factor(gss$year)&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>Internal Project</title>
       <link>/project/internal-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0600</pubDate>
       
       <guid>/project/internal-project/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
