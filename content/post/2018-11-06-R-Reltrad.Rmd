@@ -48,7 +48,7 @@ gss =  gss %>% select(relig, other, race, denom, year, attend, id, wtss)
 save(gss, file=file)
 ```
 
-Now, here is the full code to create _reltrad_ in R. The original R source code for the _reltrad_ recoding can be accessed from GitHub [here](https://github.com/thebigbird/academic/blob/master/content/post/ReltradGSS.R).Feel free to fork this code and add your own file path.
+Now, here is the full code to create _reltrad_ in R. The original R source code for the _reltrad_ recoding can be accessed from GitHub [here](https://github.com/thebigbird/davideagleorg/blob/master/content/post/ReltradGSS.R).Feel free to fork this code and add your own file path.
 
 ```{r echo=FALSE}
 knitr::read_chunk("ReltradGSS.R")
