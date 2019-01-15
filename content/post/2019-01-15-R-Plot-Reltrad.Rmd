@@ -19,8 +19,12 @@ In a previous [post](https://www.davideagle.org/post/reltrad-r/) I generated the
 
 In the R code below, I use the package [*srvyr*](https://cran.r-project.org/web/packages/srvyr/srvyr.pdf) to use *dplyr*-like syntax to create a weighted survey object. 
 
+```{r echo=FALSE}
+knitr::read_chunk("ReltradGSS.R")
+```
+
+
 ```{r, echo = T, message = F, warning = F }
-source("ReltradGSS.R")
 library(tidyverse)
 library(srvyr)
 as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
