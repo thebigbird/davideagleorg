@@ -56,10 +56,6 @@ urldata= "https://github.com/thebigbird/davideagleorg/raw/master/static/files/Re
 source_url(urldata)
 ```
 
-```{r ReltradCode, message=FALSE, warning=FALSE}
-
-```
-
 The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper _crosstab( )_ for the _CrossTable( )_ function in the package  [descr](https://cran.r-project.org/web/packages/descr/descr.pdf). It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.
 
 ```{r}
