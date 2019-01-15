@@ -7,17 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Tue, 06 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/measuring-religion/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Reltrad in the United States, 1972 - 2016</title>
+      <link>/post/reltrad-in-the-us/</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/reltrad-in-the-us/</guid>
+      <description>Religious Affiliation According to Reltrad How the United States has Changed Religiously 1972-2016 In a previous post I generated the code to create the reltrad variable in the General Social Survey. In this post, I use that code to plot how religious affiliation has changed in the United States.
+In the R code below, I use the package srvyr to use dplyr-like syntax to create a weighted survey object.</description>
+    </item>
+    
+    <item>
       <title>Creating the Reltrad Variable in the General Social Survey Using R</title>
-      <link>/post/reltrad-r/</link>
+      <link>/post/creating-reltrad/</link>
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/reltrad-r/</guid>
+      <guid>/post/creating-reltrad/</guid>
       <description>Haven’t you always wanted an easy to access R script to create the famous reltrad religious categorizaton in the General Social Survey? Well, today is your lucky day.
 The measure of religious affiliation described in (Steensland et al. 2000), otherwise known as reltrad, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College.</description>
     </item>

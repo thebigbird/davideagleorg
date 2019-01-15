@@ -1,6 +1,7 @@
 ---
 title: "Creating the Reltrad Variable in the General Social Survey Using R"
 author: "David Eagle, PhD"
+slug: "Creating Reltrad"
 date: '2018-11-06'
 output:
   html_document: default
@@ -11,7 +12,6 @@ header:
 categories:
 - Measuring religion
 - R
-slug: reltrad-R
 bibliography: /Users/dee4/Box Sync/Projects/BibTexFile/MyLibrary.bib
 ---
 Haven't you always wanted an easy to access R script to create the famous _reltrad_ religious categorizaton in the General Social Survey? Well, today is your lucky day.

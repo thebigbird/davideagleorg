@@ -1,6 +1,7 @@
 ---
 title: "Creating the Reltrad Variable in the General Social Survey Using R"
 author: "David Eagle, PhD"
+slug: "Creating Reltrad"
 date: '2018-11-06'
 output:
   html_document: default
@@ -11,7 +12,6 @@ header:
 categories:
 - Measuring religion
 - R
-slug: reltrad-R
 bibliography: /Users/dee4/Box Sync/Projects/BibTexFile/MyLibrary.bib
 ---
 
@@ -81,7 +81,8 @@ gss$white = ifelse(gss$race == &quot;white&quot;, 1, 0)
 #Take the &quot;other&quot; Protestant denominations and pull out the 
 #historical Black denominations, e.g. COGIC
 gss$xbp = gss$other
-gss$xbp = ifelse(gss$xbp %in% c(7, 14, 15, 21, 37, 38, 56, 78, 79, 85, 86, 87, 88, 98, 103, 104, 128, 133), 1, 0)
+gss$xbp = ifelse(gss$xbp %in% c(7, 14, 15, 21, 37, 38, 56, 78, 79, 85, 86, 
+                                87, 88, 98, 103, 104, 128, 133), 1, 0)
 #National baptists and AME, AMEZ
 gss$xbp = ifelse(gss$denom %in% c(12, 13, 20, 21), 1, gss$xbp)
 #Blacks in certain denoms get recoded as Black Protestant
@@ -95,8 +96,11 @@ gss$xbp[gss$black == 1] = ifelse(gss$other[gss$black == 1] %in%
 #Evangelical Protestants#
 #Recode the evangelicals in the other variable
 gss$xev=gss$other
-evother=c(2, 3, 5, 6, 9, 10, 12, 13, 16, 18, 20, 22, 24, 26, 27, 28, 31, 32, 34, 35, 36, 39, 41, 42, 43, 45, 47,51, 52, 53, 55, 57, 63, 65, 66, 67, 68, 69, 76, 77, 83,
-          84, 90, 91, 92, 94, 97, 100, 101, 102, 106, 107, 108, 109, 110, 111, 112, 115, 116, 117, 118, 120, 121, 122, 124, 125, 127, 129, 131, 132, 134, 135, 138, 139, 140, 146)
+evother=c(2, 3, 5, 6, 9, 10, 12, 13, 16, 18, 20, 22, 24, 26, 27, 28, 31, 32,
+          34, 35, 36, 39, 41, 42, 43, 45, 47,51, 52, 53, 55, 57, 63, 65, 66, 
+          67, 68, 69, 76, 77, 83, 84, 90, 91, 92, 94, 97, 100, 101, 102, 106,
+          107, 108, 109, 110, 111, 112, 115, 116, 117, 118, 120, 121, 122, 124, 
+          125, 127, 129, 131, 132, 134, 135, 138, 139, 140, 146)
 gss$xev=ifelse(gss$xev %in% evother,1,0)
 #Cons Lutherans, cons presbyterians
 gss$xev=ifelse(gss$denom %in% c(32,33,34,42), 1, gss$xev)
@@ -129,7 +133,8 @@ gss$xev[gss$inter ==1] &lt;- 1
 #The other category
 gss$xml = NA
 gss$xml = gss$other
-mpother=c(1,8,19,23,25,40, 44, 46, 48, 49, 50, 54, 70, 71, 72, 73, 81, 89, 96, 99, 105, 119, 148)
+mpother=c(1,8,19,23,25,40, 44, 46, 48, 49, 50, 54, 70, 71, 72, 73, 81, 
+          89, 96, 99, 105, 119, 148)
 gss$xml=ifelse(gss$xml %in% mpother,1,0) 
 #The denom category
 gss$xml = ifelse(gss$denom %in% 
@@ -152,8 +157,8 @@ gss$xjew=ifelse(gss$xaffil==&quot;jew&quot;,1,0)
 #Adherents of other religions.
 gss$xother = gss$other
 gss$xother = ifelse(gss$xother %in% 
-                      c(11, 17, 29, 30, 33, 58, 59, 60, 61, 62, 64, 74, 75, 80, 82,
-                        95, 113, 114, 130, 136, 141, 145),1,0)
+                      c(11, 17, 29, 30, 33, 58, 59, 60, 61, 62, 64, 74, 75, 80, 
+                        82, 95, 113, 114, 130, 136, 141, 145),1,0)
 #Adds others from main religious recoding
 gss$xother=ifelse(gss$xaffil==&quot;other&quot; &amp; gss$xev==0,1,0)
 
@@ -176,6 +181,7 @@ gss$reltrad = factor(NA, levels=c(&quot;Conservative Protestant&quot;,
                                   &quot;Roman Catholic&quot;,
                                   &quot;Other&quot;,
                                   &quot;None&quot;))
+
 gss$reltrad[gss$xev==1]=&quot;Conservative Protestant&quot;
 gss$reltrad[gss$xml==1]=&quot;Mainline Protestant&quot;
 gss$reltrad[gss$xbp==1]=&quot;Black Protestant&quot;
