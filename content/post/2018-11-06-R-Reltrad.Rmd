@@ -39,12 +39,11 @@ download.file("http://gss.norc.org/documents/stata/GSS_stata.zip",temp)
 unzip(temp, files="GSS7216_R4.DTA",exdir = "OrigData")
 unlink(temp);rm(temp)
 gss = haven::read_dta("OrigData/GSS7216_R4.DTA")
-save(gss, file = file)
 #Load the data
-load(file)
 #
 #Get the variables we want, this is a huge dataset.
-gss =  gss %>% select(relig, other, race, denom, year, attend, id, wtss)
+file = "OrigData/gss7216.data"
+gss =  gss %>% select(relig, other, race, denom, year, attend, id, wtssall, sample)
 save(gss, file=file)
 ```
 
