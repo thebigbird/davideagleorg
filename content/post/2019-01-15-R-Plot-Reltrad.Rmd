@@ -57,7 +57,7 @@ ggplot(data = relTable, aes(x=year, y=proportion, ymin = ymin, ymax = ymax, colo
   theme_light() + 
  labs(title = "1972-2016, Nones are on the rise, Christians on the Decline", 
       subtitle = "(Proportion)",
-      caption = "Source: General Social Survey, 1972-2016")
+      caption = "Source: General Social Survey, 1972-2016")  
 ```
 
 A few notable trends are evident in this plot. First of all, the proportion of Roman Catholics in the United States has declined rapidly over this period. From a a high of about 45% of the US population, the proportion of Catholics sank to about 25% in mid 1990s. Due to Latin American immigration, the proportion of Catholics have increased since the 1990s to about 30%.
