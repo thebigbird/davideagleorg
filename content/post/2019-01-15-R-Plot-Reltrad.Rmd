@@ -55,7 +55,7 @@ ggplot(data = relTable, aes(x=year, y=proportion, ymin = ymin, ymax = ymax, colo
   scale_y_continuous(limits=c(0, .45)) + 
   scale_color_discrete("Reltrad")+
   theme_light() + 
- labs(title = "1972-2016, Nones are on the rise, Catholics on the Decline", 
+ labs(title = "1972-2016, Nones are on the rise, Christians on the Decline", 
       subtitle = "(Proportion)",
       caption = "Source: General Social Survey, 1972-2016")
 ```

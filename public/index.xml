@@ -56,7 +56,7 @@ relTable$reltrad &amp;lt;- factor(relTable$reltrad, levels =
   scale_y_continuous(limits=c(0, .45)) + 
   scale_color_discrete(&amp;quot;Reltrad&amp;quot;)+
   theme_light() + 
- labs(title = &amp;quot;1972-2016, Nones are on the rise, Catholics on the Decline&amp;quot;, 
+ labs(title = &amp;quot;1972-2016, Nones are on the rise, Christians on the Decline&amp;quot;, 
       subtitle = &amp;quot;(Proportion)&amp;quot;,
       caption = &amp;quot;Source: General Social Survey, 1972-2016&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2019-01-15-R-Plot-Reltrad_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
