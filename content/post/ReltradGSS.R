@@ -5,9 +5,10 @@ library(descr) #Get the rocking CrossTable Function! Weighted! crosstab
 #This is where the R dataset will live:
 urldata = url("https://github.com/thebigbird/academic/raw/master/static/files/gss7216.data")
 #
-#load(urldata)
-load(file="content/post/OrigData/gss7216.data")
+load(urldata)
+#load(file="content/post/OrigData/gss7216.data")
 gss = gss[gss$sample < 4| gss$sample==6| gss$sample>7,]
+names(gss)
 gss = as.data.frame(gss)
 #recode into 5 major categories of religious affiliation
 # 1) Protestant [Ask DENOM]	1371	47.8
