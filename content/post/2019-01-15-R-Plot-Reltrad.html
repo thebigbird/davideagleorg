@@ -20,6 +20,9 @@ bibliography: /Users/dee4/Box Sync/Projects/BibTexFile/MyLibrary.bib
 <h3>How the United States has Changed Religiously 1972-2016</h3>
 <p>In a previous <a href="https://www.davideagle.org/post/reltrad-r/">post</a> I generated the code to create the <em>reltrad</em> variable in the General Social Survey. In this post, I use that code to plot how religious affiliation has changed in the United States.</p>
 <p>In the R code below, I use the package <a href="https://cran.r-project.org/web/packages/srvyr/srvyr.pdf"><em>srvyr</em></a> to use <em>dplyr</em>-like syntax to create a weighted survey object.</p>
+<p>The data are available on Github and were created with my reltrad <a href="https://github.com/thebigbird/R_Stata_Reltrad/blob/master/ReltradGSS.R">script</a>.</p>
+<pre class="r"><code>#The recoded data are loaded
+gss=read.csv(&quot;https://github.com/thebigbird/R_Stata_Reltrad/blob/master/gss7216_reltrad.csv?raw=true&quot;)</code></pre>
 <pre class="r"><code>library(tidyverse)
 library(srvyr)
 
@@ -29,9 +32,6 @@ gssSvy &lt;-  gss %&gt;%  as_survey_design(ids = 1, weights = wtssall)
 #when an argument is not used.
 relTable = gssSvy %&gt;% group_by(year, reltrad) %&gt;%
   summarize(proportion = survey_mean(na.rm=T))
-
-#Convert a factor to a number, but preserve the labels
-relTable$year = as.numeric(levels(relTable$year))[relTable$year]
 #for the error bars
 relTable = relTable %&gt;% mutate(ymin = proportion - 1.96*proportion_se,
                                ymax = proportion + 1.96*proportion_se)
@@ -39,11 +39,12 @@ relTable = relTable %&gt;% mutate(ymin = proportion - 1.96*proportion_se,
 relTable$reltrad &lt;- factor(relTable$reltrad, levels = 
                              c(&quot;Roman Catholic&quot;, &quot;Mainline Protestant&quot;,
                                &quot;Conservative Protestant&quot;, &quot;Black Protestant&quot;, &quot;None&quot;,
-                               &quot;Other&quot;),
+                               &quot;Other&quot;, &quot;Jewish&quot;),
                             labels =
                              c(&quot;Roman Catholic&quot;, &quot;Mainline Protestant&quot;,
                                &quot;Conservative Protestant&quot;, &quot;Black Protestant&quot;,&quot;None&quot;,
-                               &quot;Other&quot;))
+                               &quot;Other&quot;, &quot;Jewish&quot;))
+
 #Get rid of NA&#39;s in reltrad
 relTable = relTable[!is.na(relTable$reltrad),]</code></pre>
 <p>Now, using the magic of <em>ggplot2</em> I generate a plot of how religious affiliation has changed in the United States from 1972 to 2016.</p>

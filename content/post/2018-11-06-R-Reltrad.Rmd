@@ -53,16 +53,15 @@ The full code to create _reltrad_ in R lives [here](https://github.com/thebigbir
 
 ```{r include=F, message=F, error=F}
 #This allows sourcing of https links
-#Download the code from Github
-library(devtools)
-urldata= "https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R"
-source_url(urldata)
+#Download the data from Github
+gss=read.csv("https://github.com/thebigbird/R_Stata_Reltrad/blob/master/gss7216_reltrad.csv?raw=true")
 ```
 
 After the code is run, the results can be quickly tabulated. The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper _crosstab( )_ for the _CrossTable( )_ function in the package  [descr](https://cran.r-project.org/web/packages/descr/descr.pdf). It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.
 
 ```{r}
 ## @knitr ReltradTable
+library(descr)
 print(
   crosstab(gss$year,gss$reltrad,
            weight = gss$wtssall, prop.c = T, prop.r = T, prop.t = F, 
