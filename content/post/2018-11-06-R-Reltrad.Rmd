@@ -18,16 +18,16 @@ Haven't you always wanted an easy to access R script to create the famous _reltr
 
 The measure of religious affiliation described in [@steenslandMeasureAmericanReligion2000], otherwise known as _reltrad_, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College. The _reltrad_ crowd continues to think their measure is pretty good [@woodberryMeasureAmericanReligious2012]. A _reltrad_ for African Americans has been developed - this is required reading for those who use _reltrad_ in their research [@sheltonBlackReltradMeasuring2017].
 
-Up until now, the code to create the _reltrad_ variable from the [General Social Survey](http://gss.norc.org/) has only been available in PDF. Stata code for _reltrad_ is available from [Lifeway Research](http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf). Lifeway also published [R code](http://lifewayresearch.com/wp-content/uploads/2017/02/reltrad-R-Coding-2.19.2016.pdf).
+Up until now, the code to create the _reltrad_ variable from the [General Social Survey](http://gss.norc.org/) has only been available in PDF. Stata code for _reltrad_ is available from [Lifeway Research](http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf). Lifeway also published [R code](http://lifewayresearch.com/wp-content/uploads/2017/02/reltrad-R-Coding-2.19.2016.pdf). Ryan Burge has Stata code up on Github: [https://github.com/ryanburge/reltrad](https://github.com/ryanburge/reltrad).
 
-Here, I am providing an additional R translation of the code that is more reproducible and up on Github for the community to use easily. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by [@stetzerReltradCodingProblems2016].
+Here, I am providing a link to my repository with an R translation of the code that is more reproducible. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by [@stetzerReltradCodingProblems2016].
 
-This code takes a GSS datafile and then recodes religious affiliation into the _reltrad_ scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.
+The code takes a GSS datafile and then recodes religious affiliation into the _reltrad_ scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.
 
 I've written this code in vanilla R, but resorted to the _car_ package for easier recoding. The code is pretty well commented, but tweet at me or email me if you have questions. It's also bad code that I wrote a long while ago. I'd do this differently with dplyr.
 
 First, here's how to get the NORC data down:
-```{r include=T, eval=FALSE}
+```{r include=T, eval=FALSE, message=F, error=F}
 #Not run
 #Get the GSS data, import into a temp file and unzip
 #read in the GSS data
@@ -42,27 +42,30 @@ gss = haven::read_dta("OrigData/GSS7216_R4.DTA")
 #Load the data
 #
 #Get the variables we want, this is a huge dataset.
+#Save where you like:
 file = "OrigData/gss7216.data"
 gss =  gss %>% select(relig, other, race, denom, year, attend, id, wtssall, sample)
 save(gss, file=file)
 names(gss)
 ```
 
-Now, here is the full code to create _reltrad_ in R. The original R source code for the _reltrad_ recoding can be accessed from GitHub [here](https://github.com/thebigbird/davideagleorg/blob/master/content/post/ReltradGSS.R).Feel free to fork this code and add your own file path.
+The full code to create _reltrad_ in R lives [here](https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R). 
 
-```{r echo=FALSE}
+```{r include=F, message=F, error=F}
+#This allows sourcing of https links
+#Download the code from Github
 library(devtools)
 urldata= "https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R"
 source_url(urldata)
 ```
 
-The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper _crosstab( )_ for the _CrossTable( )_ function in the package  [descr](https://cran.r-project.org/web/packages/descr/descr.pdf). It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.
+After the code is run, the results can be quickly tabulated. The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper _crosstab( )_ for the _CrossTable( )_ function in the package  [descr](https://cran.r-project.org/web/packages/descr/descr.pdf). It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.
 
 ```{r}
 ## @knitr ReltradTable
 print(
   crosstab(gss$year,gss$reltrad,
-           weight = gss$wtss, prop.c = T, prop.r = T, prop.t = F, 
+           weight = gss$wtssall, prop.c = T, prop.r = T, prop.t = F, 
            total.c = F, plot = F))
 ```
 

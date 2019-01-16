@@ -25,30 +25,32 @@
 &lt;h3&gt;How the United States has Changed Religiously 1972-2016&lt;/h3&gt;
 &lt;p&gt;In a previous &lt;a href=&#34;https://www.davideagle.org/post/reltrad-r/&#34;&gt;post&lt;/a&gt; I generated the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable in the General Social Survey. In this post, I use that code to plot how religious affiliation has changed in the United States.&lt;/p&gt;
 &lt;p&gt;In the R code below, I use the package &lt;a href=&#34;https://cran.r-project.org/web/packages/srvyr/srvyr.pdf&#34;&gt;&lt;em&gt;srvyr&lt;/em&gt;&lt;/a&gt; to use &lt;em&gt;dplyr&lt;/em&gt;-like syntax to create a weighted survey object.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## SHA-1 hash of file is 3b10f89b45fadad2bd98c52e64983b3b741e3fc1&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: carData&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 library(srvyr)
-as.numeric.factor &amp;lt;- function(x) {as.numeric(levels(x))[x]}
 
 gssSvy &amp;lt;-  gss %&amp;gt;%  as_survey_design(ids = 1, weights = wtssall)
 
+#Grouping by year and reltrad. survey_mean calculates proportions of factor variables
+#when an argument is not used.
 relTable = gssSvy %&amp;gt;% group_by(year, reltrad) %&amp;gt;%
   summarize(proportion = survey_mean(na.rm=T))
 
-relTable$year = as.numeric.factor(relTable$year)
-
+#Convert a factor to a number, but preserve the labels
+relTable$year = as.numeric(levels(relTable$year))[relTable$year]
+#for the error bars
 relTable = relTable %&amp;gt;% mutate(ymin = proportion - 1.96*proportion_se,
                                ymax = proportion + 1.96*proportion_se)
-
+#Reorder the factors so they appear in same order on the legend and the plot 
 relTable$reltrad &amp;lt;- factor(relTable$reltrad, levels = 
                              c(&amp;quot;Roman Catholic&amp;quot;, &amp;quot;Mainline Protestant&amp;quot;,
-                               &amp;quot;Conservative Protestant&amp;quot;, &amp;quot;None&amp;quot;,
-                               &amp;quot;Other&amp;quot;, &amp;quot;Black Protestant&amp;quot;),
+                               &amp;quot;Conservative Protestant&amp;quot;, &amp;quot;Black Protestant&amp;quot;, &amp;quot;None&amp;quot;,
+                               &amp;quot;Other&amp;quot;),
                             labels =
                              c(&amp;quot;Roman Catholic&amp;quot;, &amp;quot;Mainline Protestant&amp;quot;,
-                               &amp;quot;Conservative Protestant&amp;quot;, &amp;quot;None&amp;quot;,
-                               &amp;quot;Other&amp;quot;, &amp;quot;Black Protestant&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+                               &amp;quot;Conservative Protestant&amp;quot;, &amp;quot;Black Protestant&amp;quot;,&amp;quot;None&amp;quot;,
+                               &amp;quot;Other&amp;quot;))
+#Get rid of NA&amp;#39;s in reltrad
+relTable = relTable[!is.na(relTable$reltrad),]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now, using the magic of &lt;em&gt;ggplot2&lt;/em&gt; I generate a plot of how religious affiliation has changed in the United States from 1972 to 2016.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(data = relTable, aes(x=year, y=proportion, ymin = ymin, ymax = ymax, color = reltrad)) + 
   geom_ribbon(alpha = .2, linetype = 0) + geom_point() + geom_line() + 
@@ -61,10 +63,11 @@ relTable$reltrad &amp;lt;- factor(relTable$reltrad, levels =
       subtitle = &amp;quot;(Proportion)&amp;quot;,
       caption = &amp;quot;Source: General Social Survey, 1972-2016&amp;quot;)  &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2019-01-15-R-Plot-Reltrad_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;A few notable trends are evident in this plot. First of all, the proportion of Roman Catholics in the United States has declined rapidly over this period. From a a high of about 45% of the US population, the proportion of Catholics sank to about 25% in mid 1990s. Due to Latin American immigration, the proportion of Catholics have increased since the 1990s to about 30%.&lt;/p&gt;
-&lt;p&gt;Second, there has been a very steep rise in the number of people claiming no religious affiliation. Non-affliates were a pretty steady 8% of the US population from the early 1970s to the early 1990s. The proportion of nones has climbed steeply since then, reaching a high of 25% of the US population, making them the second largest “religious” group in the United States.&lt;/p&gt;
-&lt;p&gt;Third, there is some strangeness in these data from the mid-1980s to the mid-1990s. Over this period, there is a fairly large increase in the proportion of the population classified as Mainline Protestant. It is not clear if this is a problem with the denominational classification system in the GSS or if it reflects real growth. My suspicion is that this is an issue with the way denomination was coded over this period and not a real increase in the proportion of Mainline Protestants in the US.&lt;/p&gt;
-&lt;p&gt;Also important is that the “Other” religion category is steadily climbing, and has reached a high of about 5% of the US population. Conservative Protestants also seem to be on the decline. In the last two waves of the GSS they are at an all-time low of about 18%.&lt;/p&gt;
+&lt;p&gt;A few notable trends are evident in this plot. First of all, the proportion of Roman Catholics in the United States has stayed relatively steady over this period. While Latin American immigration has brought a lot of new Catholics to the United States, this has been offset by losses among the non-hispanic Catholic population.&lt;/p&gt;
+&lt;p&gt;Second, there has been a very steep rise in the number of people claiming no religious affiliation. Non-affliates were a pretty steady 5-8% of the US population from the early 1970s to the early 1990s. The proportion of nones has climbed steeply since then, reaching a high of 25% of the US population, making them the second largest “religious” group in the United States. They could very well surpass Catholics by the time the next wave of GSS data are released.&lt;/p&gt;
+&lt;p&gt;The higher proportion Black Protestant in 1972 is probably due to some sort of artifact in the GSS data. There seems to be a lower proportion of Conservative Protestants that year as well. This blip is also found on other plots of GSS reltrad data, &lt;a href=&#34;https://thesocietypages.org/ccf/2014/07/09/religious-change/fig-2-religious-change/&#34;&gt;here&lt;/a&gt;, for example.&lt;/p&gt;
+&lt;p&gt;Third, Mainline Protestants are in free fall. They are now about 12% of the US population, down about 20 points from their peak in the early 1970s. Conservative Protestants made some gains in the mid-1980s to mid-1990s (probably due to people leaving mainline denominations over cultural issues), but are also declining. They are down about 10 points from their high in the early 1990s.&lt;/p&gt;
+&lt;p&gt;Also important is that the “Other” religion category is steadily climbing, and has reached a high of about 5% of the US population. The proportion of the population identifying as Black Protestants remained fairly steady over this period, but recently has begun to decline.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -81,9 +84,9 @@ relTable$reltrad &amp;lt;- factor(relTable$reltrad, levels =
 
 &lt;p&gt;Haven’t you always wanted an easy to access R script to create the famous &lt;em&gt;reltrad&lt;/em&gt; religious categorizaton in the General Social Survey? Well, today is your lucky day.&lt;/p&gt;
 &lt;p&gt;The measure of religious affiliation described in &lt;span class=&#34;citation&#34;&gt;(Steensland et al. 2000)&lt;/span&gt;, otherwise known as &lt;em&gt;reltrad&lt;/em&gt;, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College. The &lt;em&gt;reltrad&lt;/em&gt; crowd continues to think their measure is pretty good &lt;span class=&#34;citation&#34;&gt;(Woodberry et al. 2012)&lt;/span&gt;. A &lt;em&gt;reltrad&lt;/em&gt; for African Americans has been developed - this is required reading for those who use &lt;em&gt;reltrad&lt;/em&gt; in their research &lt;span class=&#34;citation&#34;&gt;(Shelton and Cobb 2017)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;Up until now, the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable from the &lt;a href=&#34;http://gss.norc.org/&#34;&gt;General Social Survey&lt;/a&gt; has only been available in PDF. Stata code for &lt;em&gt;reltrad&lt;/em&gt; is available from &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf&#34;&gt;Lifeway Research&lt;/a&gt;. Lifeway also published &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2017/02/reltrad-R-Coding-2.19.2016.pdf&#34;&gt;R code&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here, I am providing an additional R translation of the code that is more reproducible and up on Github for the community to use easily. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by &lt;span class=&#34;citation&#34;&gt;(Stetzer and Burge 2016)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;This code takes a GSS datafile and then recodes religious affiliation into the &lt;em&gt;reltrad&lt;/em&gt; scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.&lt;/p&gt;
+&lt;p&gt;Up until now, the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable from the &lt;a href=&#34;http://gss.norc.org/&#34;&gt;General Social Survey&lt;/a&gt; has only been available in PDF. Stata code for &lt;em&gt;reltrad&lt;/em&gt; is available from &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf&#34;&gt;Lifeway Research&lt;/a&gt;. Lifeway also published &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2017/02/reltrad-R-Coding-2.19.2016.pdf&#34;&gt;R code&lt;/a&gt;. Ryan Burge has Stata code up on Github: &lt;a href=&#34;https://github.com/ryanburge/reltrad&#34;&gt;https://github.com/ryanburge/reltrad&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here, I am providing a link to my repository with an R translation of the code that is more reproducible. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by &lt;span class=&#34;citation&#34;&gt;(Stetzer and Burge 2016)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The code takes a GSS datafile and then recodes religious affiliation into the &lt;em&gt;reltrad&lt;/em&gt; scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.&lt;/p&gt;
 &lt;p&gt;I’ve written this code in vanilla R, but resorted to the &lt;em&gt;car&lt;/em&gt; package for easier recoding. The code is pretty well commented, but tweet at me or email me if you have questions. It’s also bad code that I wrote a long while ago. I’d do this differently with dplyr.&lt;/p&gt;
 &lt;p&gt;First, here’s how to get the NORC data down:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Not run
@@ -100,18 +103,17 @@ gss = haven::read_dta(&amp;quot;OrigData/GSS7216_R4.DTA&amp;quot;)
 #Load the data
 #
 #Get the variables we want, this is a huge dataset.
+#Save where you like:
 file = &amp;quot;OrigData/gss7216.data&amp;quot;
 gss =  gss %&amp;gt;% select(relig, other, race, denom, year, attend, id, wtssall, sample)
 save(gss, file=file)
 names(gss)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now, here is the full code to create &lt;em&gt;reltrad&lt;/em&gt; in R. The original R source code for the &lt;em&gt;reltrad&lt;/em&gt; recoding can be accessed from GitHub &lt;a href=&#34;https://github.com/thebigbird/davideagleorg/blob/master/content/post/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.Feel free to fork this code and add your own file path.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## SHA-1 hash of file is 3b10f89b45fadad2bd98c52e64983b3b741e3fc1&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: carData&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper &lt;em&gt;crosstab( )&lt;/em&gt; for the &lt;em&gt;CrossTable( )&lt;/em&gt; function in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/descr/descr.pdf&#34;&gt;descr&lt;/a&gt;. It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.&lt;/p&gt;
+&lt;p&gt;The full code to create &lt;em&gt;reltrad&lt;/em&gt; in R lives &lt;a href=&#34;https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;After the code is run, the results can be quickly tabulated. The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper &lt;em&gt;crosstab( )&lt;/em&gt; for the &lt;em&gt;CrossTable( )&lt;/em&gt; function in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/descr/descr.pdf&#34;&gt;descr&lt;/a&gt;. It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## @knitr ReltradTable
 print(
   crosstab(gss$year,gss$reltrad,
-           weight = gss$wtss, prop.c = T, prop.r = T, prop.t = F, 
+           weight = gss$wtssall, prop.c = T, prop.r = T, prop.t = F, 
            total.c = F, plot = F))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Cell Contents 
 ## |-------------------------|

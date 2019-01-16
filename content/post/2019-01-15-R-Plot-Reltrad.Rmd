@@ -19,7 +19,7 @@ In a previous [post](https://www.davideagle.org/post/reltrad-r/) I generated the
 
 In the R code below, I use the package [*srvyr*](https://cran.r-project.org/web/packages/srvyr/srvyr.pdf) to use *dplyr*-like syntax to create a weighted survey object. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=F, error=F}
 library(devtools)
 urldata= "https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R"
 source_url(urldata)
@@ -29,26 +29,31 @@ source_url(urldata)
 ```{r, echo = T, message = F, warning = F }
 library(tidyverse)
 library(srvyr)
-as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
 
 gssSvy <-  gss %>%  as_survey_design(ids = 1, weights = wtssall)
 
+#Grouping by year and reltrad. survey_mean calculates proportions of factor variables
+#when an argument is not used.
 relTable = gssSvy %>% group_by(year, reltrad) %>%
   summarize(proportion = survey_mean(na.rm=T))
 
-relTable$year = as.numeric.factor(relTable$year)
-
+#Convert a factor to a number, but preserve the labels
+relTable$year = as.numeric(levels(relTable$year))[relTable$year]
+#for the error bars
 relTable = relTable %>% mutate(ymin = proportion - 1.96*proportion_se,
                                ymax = proportion + 1.96*proportion_se)
-
+#Reorder the factors so they appear in same order on the legend and the plot 
 relTable$reltrad <- factor(relTable$reltrad, levels = 
                              c("Roman Catholic", "Mainline Protestant",
-                               "Conservative Protestant", "None",
-                               "Other", "Black Protestant"),
+                               "Conservative Protestant", "Black Protestant", "None",
+                               "Other"),
                             labels =
                              c("Roman Catholic", "Mainline Protestant",
-                               "Conservative Protestant", "None",
-                               "Other", "Black Protestant"))
+                               "Conservative Protestant", "Black Protestant","None",
+                               "Other"))
+#Get rid of NA's in reltrad
+relTable = relTable[!is.na(relTable$reltrad),]
+
 ```
 
 Now, using the magic of *ggplot2* I generate a plot of how religious affiliation has changed in the United States from 1972 to 2016. 
@@ -66,11 +71,12 @@ ggplot(data = relTable, aes(x=year, y=proportion, ymin = ymin, ymax = ymax, colo
       caption = "Source: General Social Survey, 1972-2016")  
 ```
 
-A few notable trends are evident in this plot. First of all, the proportion of Roman Catholics in the United States has declined rapidly over this period. From a a high of about 45% of the US population, the proportion of Catholics sank to about 25% in mid 1990s. Due to Latin American immigration, the proportion of Catholics have increased since the 1990s to about 30%.
+A few notable trends are evident in this plot. First of all, the proportion of Roman Catholics in the United States has stayed relatively steady over this period. While Latin American immigration has brought a lot of new Catholics to the United States, this has been offset by losses among the non-hispanic Catholic population. 
 
-Second, there has been a very steep rise in the number of people claiming no religious affiliation. Non-affliates were a pretty steady 8% of the US population from the early 1970s to the early 1990s. The proportion of nones has climbed steeply since then, reaching a high of 25% of the US population, making them the second largest "religious" group in the United States.
+Second, there has been a very steep rise in the number of people claiming no religious affiliation. Non-affliates were a pretty steady 5-8% of the US population from the early 1970s to the early 1990s. The proportion of nones has climbed steeply since then, reaching a high of 25% of the US population, making them the second largest "religious" group in the United States. They could very well surpass Catholics by the time the next wave of GSS data are released.
 
-Third, there is some strangeness in these data from the mid-1980s to the mid-1990s. Over this period, there is a fairly large increase in the proportion of the population classified as Mainline Protestant. It is not clear if this is a problem with the denominational classification system in the GSS or if it reflects real growth. My suspicion is that this is an issue with the way denomination was coded over this period and not a real increase in the proportion of Mainline Protestants in the US.
+The higher proportion Black Protestant in 1972 is probably due to some sort of artifact in the GSS data. There seems to be a lower proportion of Conservative Protestants that year as well. This blip is also found on other plots of GSS reltrad data, [here](https://thesocietypages.org/ccf/2014/07/09/religious-change/fig-2-religious-change/), for example.
+
+Third, Mainline Protestants are in free fall. They are now about 12% of the US population, down about 20 points from their peak in the early 1970s. Conservative Protestants made some gains in the mid-1980s to mid-1990s (probably due to people leaving mainline denominations over cultural issues), but are also declining. They are down about 10 points from their high in the early 1990s.
  
-Also important is that the "Other" religion category is steadily climbing, and has reached a high of about 5% of the US population. Conservative Protestants also seem to be on the decline. In the last two waves of the GSS they are at an all-time low of about 18%. 
-
+Also important is that the "Other" religion category is steadily climbing, and has reached a high of about 5% of the US population. The proportion of the population identifying as Black Protestants remained fairly steady over this period, but recently has begun to decline.
