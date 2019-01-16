@@ -19,12 +19,12 @@ In a previous [post](https://www.davideagle.org/post/reltrad-r/) I generated the
 
 In the R code below, I use the package [*srvyr*](https://cran.r-project.org/web/packages/srvyr/srvyr.pdf) to use *dplyr*-like syntax to create a weighted survey object. 
 
-```{r echo=FALSE, message=F, error=F}
-library(devtools)
-urldata= "https://github.com/thebigbird/R_Stata_Reltrad/edit/master/ReltradGSS.R"
-source_url(urldata)
-```
+The data are available on Github and were created with my reltrad [script](https://github.com/thebigbird/R_Stata_Reltrad/blob/master/ReltradGSS.R).
 
+```{r echo=T, message=F, error=F}
+#The recoded data are loaded
+gss=read.csv("https://github.com/thebigbird/R_Stata_Reltrad/blob/master/gss7216_reltrad.csv?raw=true")
+```
 
 ```{r, echo = T, message = F, warning = F }
 library(tidyverse)
@@ -36,9 +36,6 @@ gssSvy <-  gss %>%  as_survey_design(ids = 1, weights = wtssall)
 #when an argument is not used.
 relTable = gssSvy %>% group_by(year, reltrad) %>%
   summarize(proportion = survey_mean(na.rm=T))
-
-#Convert a factor to a number, but preserve the labels
-relTable$year = as.numeric(levels(relTable$year))[relTable$year]
 #for the error bars
 relTable = relTable %>% mutate(ymin = proportion - 1.96*proportion_se,
                                ymax = proportion + 1.96*proportion_se)
@@ -51,6 +48,7 @@ relTable$reltrad <- factor(relTable$reltrad, levels =
                              c("Roman Catholic", "Mainline Protestant",
                                "Conservative Protestant", "Black Protestant","None",
                                "Other", "Jewish"))
+
 #Get rid of NA's in reltrad
 relTable = relTable[!is.na(relTable$reltrad),]
 
