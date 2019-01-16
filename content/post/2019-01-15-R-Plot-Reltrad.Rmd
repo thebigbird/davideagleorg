@@ -21,7 +21,7 @@ In the R code below, I use the package [*srvyr*](https://cran.r-project.org/web/
 
 ```{r echo=FALSE, message=F, error=F}
 library(devtools)
-urldata= "https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R"
+urldata= "https://github.com/thebigbird/R_Stata_Reltrad/edit/master/ReltradGSS.R"
 source_url(urldata)
 ```
 
@@ -46,11 +46,11 @@ relTable = relTable %>% mutate(ymin = proportion - 1.96*proportion_se,
 relTable$reltrad <- factor(relTable$reltrad, levels = 
                              c("Roman Catholic", "Mainline Protestant",
                                "Conservative Protestant", "Black Protestant", "None",
-                               "Other"),
+                               "Other", "Jewish"),
                             labels =
                              c("Roman Catholic", "Mainline Protestant",
                                "Conservative Protestant", "Black Protestant","None",
-                               "Other"))
+                               "Other", "Jewish"))
 #Get rid of NA's in reltrad
 relTable = relTable[!is.na(relTable$reltrad),]
 
