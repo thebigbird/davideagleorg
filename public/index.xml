@@ -109,7 +109,7 @@ file = &amp;quot;OrigData/gss7216.data&amp;quot;
 gss =  gss %&amp;gt;% select(relig, other, race, denom, year, attend, id, wtssall, sample)
 save(gss, file=file)
 names(gss)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The full code to create &lt;em&gt;reltrad&lt;/em&gt; in R lives &lt;a href=&#34;https://github.com/thebigbird/davideagleorg/raw/master/static/files/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The full code to create &lt;em&gt;reltrad&lt;/em&gt; in R lives &lt;a href=&#34;https://github.com/thebigbird/R_Stata_Reltrad/blob/master/ReltradGSS.R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After the code is run, the results can be quickly tabulated. The following table looks at how the religious composition of the US has changed over time. This uses the very useful wrapper &lt;em&gt;crosstab( )&lt;/em&gt; for the &lt;em&gt;CrossTable( )&lt;/em&gt; function in the package &lt;a href=&#34;https://cran.r-project.org/web/packages/descr/descr.pdf&#34;&gt;descr&lt;/a&gt;. It allows you to make weighted crosstabs easily and prettily. In subsequent posts, I will have some fun with ggplot to visual these data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## @knitr ReltradTable
 library(descr)
