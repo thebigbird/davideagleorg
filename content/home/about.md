@@ -46,7 +46,7 @@ weight = 5
 +++
 ### Biography
 
-I am an Assistant Research Professor in the [Center for Health Policy and Inequalities Research](www.chpir.org) and the [Duke Global Health Institute](globalhealth.duke.edu). I am an expert on the health of religious clergy, the changing shape of churches in North American society, and the implications of these trends for the professional training of ministers.
+I am an Assistant Research Professor in the [Center for Health Policy and Inequalities Research](http://www.chpir.org) and the [Duke Global Health Institute](http://globalhealth.duke.edu). I am an expert on the health of religious clergy, the changing shape of churches in North American society, and the implications of these trends for the professional training of ministers.
 
 Substantively, I have a strong interest in the social and structural determinants of mental health and and how organizational processes create racial disparities among professional workers.
 

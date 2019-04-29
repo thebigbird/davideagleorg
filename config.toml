@@ -10,6 +10,7 @@ baseurl = "https://davideagle.netlify.com/"
 
 # Title of your site
 title = "David Eagle, PhD."
+relativeURLs = false
 
 # Your copyright notice - appears in site footer.
 # To display a copyright symbol, type `&copy;`.
@@ -56,7 +57,7 @@ enableGitInfo = false
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Duke Global Health Institute", url = "globalhealth.duke.edu" },{ name = "Center for Health Policy and Inequalities Research", url = "chpir.org" },{ name = "Duke University", url = "www.duke.edu" }  ]
+  organizations = [ { name = "Duke Global Health Institute", url = "https://globalhealth.duke.edu" },{ name = "Center for Health Policy and Inequalities Research", url = "https://chpir.org" },{ name = "Duke University", url = "https://www.duke.edu" }  ]
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
