@@ -10,11 +10,12 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "The processes which protects white privilege in the United Methodist appointment process",
-    "Black-white differences in mental and physical health of clergy",
-    "Perceived and received social support and their impact on mental health",
-    "How intra-denominational social networks impact the health of clergy",
-    "The role of selection processes in explaining poor clergy health"
+    "Theological Education",
+    "Clergy Health and Wellbeing",
+    "The Social Organization of American Religion",
+    "Racial and Economic Disparities",
+    "Research Methods",
+    "The Psychophysiology of Stress"
   ]
 
 # List your qualifications (such as academic degrees).
@@ -48,8 +49,8 @@ weight = 5
 
 I am an Assistant Research Professor in the [Center for Health Policy and Inequalities Research](http://www.chpir.org) and the [Duke Global Health Institute](http://globalhealth.duke.edu). I am an expert on the health of religious clergy, the changing shape of churches in North American society, and the implications of these trends for the professional training of ministers.
 
-Substantively, I have a strong interest in the social and structural determinants of mental health and and how organizational processes create racial disparities among professional workers.
+I am Principle Investigator of [The Seminary to Early Ministry Study](http://semstudy.org), a multi-year, multi-cohort study seeking to understand how seminary impacts the health, occupational wellbeing, theology, and career trajectories of students.
 
 Methodologically, I am skilled in the collection and analysis of survey data, including longitudinal and social network data. 
 
-My research is published in the Journal of Social and Personal Relationships, the Annals of Behavioral Medicine, the American Journal of Preventive Medicine, Social Networks, the Journal of Social History, the Journal for the Scientific Study of Religion, the Review of Religious Research.
+My research is published in the Journal of Religion and Health, the Journal of Social and Personal Relationships, the Annals of Behavioral Medicine, the American Journal of Preventive Medicine, Social Networks, the Journal of Social History, the Journal for the Scientific Study of Religion, and the Review of Religious Research.
