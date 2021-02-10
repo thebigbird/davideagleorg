@@ -107,7 +107,7 @@ enableGitInfo = false
   font = "default"
 
   # Description for social sharing and search engines. If undefined, author role is used in place.
-  description = "The personal website of David Eagle Research Association Duke University Global Health Institute"
+  description = "The personal website of David Eagle, Assistant Research Professor, Duke University Global Health Institute"
 
   # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
   sharing_image = ""
@@ -263,7 +263,7 @@ enableGitInfo = false
    [[params.social]]
      icon = "cv"
      icon_pack = "ai"
-     link = "files/EagleVita.pdf"
+     link = "files/cv/EagleVita.pdf"
 
 # Navigation Links
 #   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
@@ -307,7 +307,7 @@ enableGitInfo = false
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
  [[menu.main]]
     name = "CV"
-    url = "files/EagleVita.pdf"
+    url = "files/cv/EagleVita.pdf"
     weight = 7
 
 # Search.
