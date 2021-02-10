@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Recent &amp; Upcoming Talks on David Eagle, PhD.</title>
-    <link>/talk/</link>
+    <link>https://davideagle.netlify.com/talk/</link>
     <description>Recent content in Recent &amp; Upcoming Talks on David Eagle, PhD.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 -0800</lastBuildDate>
     
-	<atom:link href="/talk/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://davideagle.netlify.com/talk/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

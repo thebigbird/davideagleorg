@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>David Eagle, PhD. on David Eagle, PhD.</title>
-    <link>/</link>
+    <link>https://davideagle.netlify.com/</link>
     <description>Recent content in David Eagle, PhD. on David Eagle, PhD.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 -0700</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Reltrad in the United States, 1972 - 2016</title>
-      <link>/post/reltrad-in-the-us/</link>
+      <link>https://davideagle.netlify.com/post/reltrad-in-the-us/</link>
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/reltrad-in-the-us/</guid>
+      <guid>https://davideagle.netlify.com/post/reltrad-in-the-us/</guid>
       <description>
 
 
@@ -63,7 +63,7 @@ relTable = relTable[!is.na(relTable$reltrad),]&lt;/code&gt;&lt;/pre&gt;
  labs(title = &amp;quot;1972-2016, Nones are on the rise, Christians on the Decline&amp;quot;, 
       subtitle = &amp;quot;(Proportion)&amp;quot;,
       caption = &amp;quot;Source: General Social Survey, 1972-2016&amp;quot;)  &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-15-R-Plot-Reltrad_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://davideagle.netlify.com/post/2019-01-15-R-Plot-Reltrad_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;A few notable trends are evident in this plot. First of all, the proportion of Roman Catholics in the United States has stayed relatively steady over this period. While Latin American immigration has brought a lot of new Catholics to the United States, this has been offset by losses among the non-hispanic Catholic population.&lt;/p&gt;
 &lt;p&gt;Second, there has been a very steep rise in the number of people claiming no religious affiliation. Non-affliates were a pretty steady 5-8% of the US population from the early 1970s to the early 1990s. The proportion of nones has climbed steeply since then, reaching a high of 25% of the US population, making them the second largest “religious” group in the United States. They could very well surpass Catholics by the time the next wave of GSS data are released.&lt;/p&gt;
 &lt;p&gt;The higher proportion Black Protestant in 1972 is probably due to some sort of artifact in the GSS data. There seems to be a lower proportion of Conservative Protestants that year as well. This blip is also found on other plots of GSS reltrad data, &lt;a href=&#34;https://thesocietypages.org/ccf/2014/07/09/religious-change/fig-2-religious-change/&#34;&gt;here&lt;/a&gt;, for example.&lt;/p&gt;
@@ -76,37 +76,37 @@ relTable = relTable[!is.na(relTable$reltrad),]&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Caring and Thriving: An International Qualitative Study of Caregivers of Orphaned and Vulnerable Children and Strategies to Sustain Positive Mental Health.</title>
-      <link>/publication/2019-01-01_pbcaregiver/</link>
+      <link>https://davideagle.netlify.com/publication/2019-01-01_pbcaregiver/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2019-01-01_pbcaregiver/</guid>
+      <guid>https://davideagle.netlify.com/publication/2019-01-01_pbcaregiver/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Religion and Caregiving for Orphans and Vulnerable Children: A Qualitative Study of Caregivers Across Four Religious Traditions and Five Global Contexts</title>
-      <link>/publication/2019-01-01_eagle_caregiverreligion/</link>
+      <link>https://davideagle.netlify.com/publication/2019-01-01_eagle_caregiverreligion/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2019-01-01_eagle_caregiverreligion/</guid>
+      <guid>https://davideagle.netlify.com/publication/2019-01-01_eagle_caregiverreligion/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Social Networks, Support, and Depressive Symptoms: Gender Differences among Clergy</title>
-      <link>/publication/2019-01-01_eagle_socius/</link>
+      <link>https://davideagle.netlify.com/publication/2019-01-01_eagle_socius/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2019-01-01_eagle_socius/</guid>
+      <guid>https://davideagle.netlify.com/publication/2019-01-01_eagle_socius/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Creating the Reltrad Variable in the General Social Survey Using R</title>
-      <link>/post/creating-reltrad/</link>
+      <link>https://davideagle.netlify.com/post/creating-reltrad/</link>
       <pubDate>Tue, 06 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/creating-reltrad/</guid>
+      <guid>https://davideagle.netlify.com/post/creating-reltrad/</guid>
       <description>
 
 
@@ -301,10 +301,10 @@ print(
     
     <item>
       <title>Example Page</title>
-      <link>/tutorial/example/</link>
-      <pubDate>Sun, 09 Sep 2018 00:00:00 -0400</pubDate>
+      <link>https://davideagle.netlify.com/tutorial/example/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 -0700</pubDate>
       
-      <guid>/tutorial/example/</guid>
+      <guid>https://davideagle.netlify.com/tutorial/example/</guid>
       <description>
 
 &lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
@@ -320,84 +320,74 @@ print(
     </item>
     
     <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 -0400</pubDate>
-      
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Disentangling Race and Socioeconomic Status in HealthDisparities Research: an Examination of Black and White Clergy</title>
-      <link>/publication/2018-01-01_case_disentangling_2018/</link>
+      <link>https://davideagle.netlify.com/publication/2018-01-01_case_disentangling_2018/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2018-01-01_case_disentangling_2018/</guid>
+      <guid>https://davideagle.netlify.com/publication/2018-01-01_case_disentangling_2018/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Household Charitable Giving at the Intersection of Gender, Marital Status, and Religion</title>
-      <link>/publication/2018-01-01_eagle_household_2018/</link>
+      <link>https://davideagle.netlify.com/publication/2018-01-01_eagle_household_2018/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2018-01-01_eagle_household_2018/</guid>
+      <guid>https://davideagle.netlify.com/publication/2018-01-01_eagle_household_2018/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Perceived social support, received social support, and depression among clergy</title>
-      <link>/publication/2018-01-01_eagle_perceived_2018/</link>
+      <link>https://davideagle.netlify.com/publication/2018-01-01_eagle_perceived_2018/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2018-01-01_eagle_perceived_2018/</guid>
+      <guid>https://davideagle.netlify.com/publication/2018-01-01_eagle_perceived_2018/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A 2-Year Holistic Health and Stress Intervention: Results of an RCT in Clergy</title>
-      <link>/publication/2017-01-01_proeschold-bell_2-year_2017/</link>
+      <link>https://davideagle.netlify.com/publication/2017-01-01_proeschold-bell_2-year_2017/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2017-01-01_proeschold-bell_2-year_2017/</guid>
+      <guid>https://davideagle.netlify.com/publication/2017-01-01_proeschold-bell_2-year_2017/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Prospective Associations Between Depressive Symptoms and the Metabolic Syndrome: the Spirited Life Study of Methodist Pastors in North Carolina</title>
-      <link>/publication/2017-01-01_smith_prospective_2017/</link>
+      <link>https://davideagle.netlify.com/publication/2017-01-01_smith_prospective_2017/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2017-01-01_smith_prospective_2017/</guid>
+      <guid>https://davideagle.netlify.com/publication/2017-01-01_smith_prospective_2017/</guid>
       <description></description>
     </item>
     
     <item>
       <title>The Honeymoon is Over: Occupational Relocation and Changes in Mental Health Among United Methodist Clergy</title>
-      <link>/publication/2017-01-01_eagle_honeymoon_2017/</link>
+      <link>https://davideagle.netlify.com/publication/2017-01-01_eagle_honeymoon_2017/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2017-01-01_eagle_honeymoon_2017/</guid>
+      <guid>https://davideagle.netlify.com/publication/2017-01-01_eagle_honeymoon_2017/</guid>
       <description></description>
     </item>
     
     <item>
       <title>External Project</title>
-      <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      <link>https://davideagle.netlify.com/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0700</pubDate>
       
-      <guid>/project/external-project/</guid>
+      <guid>https://davideagle.netlify.com/project/external-project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Internal Project</title>
-      <link>/project/internal-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      <link>https://davideagle.netlify.com/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0700</pubDate>
       
-      <guid>/project/internal-project/</guid>
+      <guid>https://davideagle.netlify.com/project/internal-project/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
 
 &lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
@@ -408,6 +398,15 @@ print(
 
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>The Negative Relationship between Size and the Probability of Weekly Attendance in Churches in the United States</title>
+      <link>https://davideagle.netlify.com/publication/2016-01-01_eagle_negative_2016/</link>
+      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://davideagle.netlify.com/publication/2016-01-01_eagle_negative_2016/</guid>
+      <description></description>
     </item>
     
   </channel>
