@@ -9,7 +9,7 @@ output:
 categories:
 - Measuring religion
 - R
-bibliography: /Users/dee4/Box Sync/Projects/BibTexFile/MyLibrary.bib
+bibliography: /Users/dee4/Box/Projects/BibTexFile/MyLibrary.bib
 ---
 
 ## Religious Affiliation According to *Reltrad*

@@ -11,12 +11,22 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Age differences in trajectories of depressive, anxiety and burnout symptoms in a population with a high likelihood of persistent occupational distress.</title>
+      <link>https://davideagle.netlify.com/publication/2020-01-01_age/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://davideagle.netlify.com/publication/2020-01-01_age/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Reltrad in the United States, 1972 - 2016</title>
       <link>https://davideagle.netlify.com/post/reltrad-in-the-us/</link>
       <pubDate>Tue, 15 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://davideagle.netlify.com/post/reltrad-in-the-us/</guid>
       <description>
+&lt;script src=&#34;https://davideagle.netlify.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;div id=&#34;religious-affiliation-according-to-reltrad&#34; class=&#34;section level2&#34;&gt;
@@ -108,12 +118,13 @@ relTable = relTable[!is.na(relTable$reltrad),]&lt;/code&gt;&lt;/pre&gt;
       
       <guid>https://davideagle.netlify.com/post/creating-reltrad/</guid>
       <description>
+&lt;script src=&#34;https://davideagle.netlify.com/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Haven’t you always wanted an easy to access R script to create the famous &lt;em&gt;reltrad&lt;/em&gt; religious categorizaton in the General Social Survey? Well, today is your lucky day.&lt;/p&gt;
-&lt;p&gt;The measure of religious affiliation described in &lt;span class=&#34;citation&#34;&gt;(Steensland et al. 2000)&lt;/span&gt;, otherwise known as &lt;em&gt;reltrad&lt;/em&gt;, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College. The &lt;em&gt;reltrad&lt;/em&gt; crowd continues to think their measure is pretty good &lt;span class=&#34;citation&#34;&gt;(Woodberry et al. 2012)&lt;/span&gt;. A &lt;em&gt;reltrad&lt;/em&gt; for African Americans has been developed - this is required reading for those who use &lt;em&gt;reltrad&lt;/em&gt; in their research &lt;span class=&#34;citation&#34;&gt;(Shelton and Cobb 2017)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;The measure of religious affiliation described in &lt;span class=&#34;citation&#34;&gt;(&lt;a href=&#34;#ref-steenslandMeasureAmericanReligion2000&#34; role=&#34;doc-biblioref&#34;&gt;Steensland et al. 2000&lt;/a&gt;)&lt;/span&gt;, otherwise known as &lt;em&gt;reltrad&lt;/em&gt;, remains the most popular way to categorize people religiously in the United States. Early development of the measure was done by Corwin Smidt, Bud Kellstedt and James Guth during their annual seminars on measuring religion offered at Calvin College. The &lt;em&gt;reltrad&lt;/em&gt; crowd continues to think their measure is pretty good &lt;span class=&#34;citation&#34;&gt;(&lt;a href=&#34;#ref-woodberryMeasureAmericanReligious2012&#34; role=&#34;doc-biblioref&#34;&gt;Woodberry et al. 2012&lt;/a&gt;)&lt;/span&gt;. A &lt;em&gt;reltrad&lt;/em&gt; for African Americans has been developed - this is required reading for those who use &lt;em&gt;reltrad&lt;/em&gt; in their research &lt;span class=&#34;citation&#34;&gt;(&lt;a href=&#34;#ref-sheltonBlackReltradMeasuring2017&#34; role=&#34;doc-biblioref&#34;&gt;Shelton and Cobb 2017&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Up until now, the code to create the &lt;em&gt;reltrad&lt;/em&gt; variable from the &lt;a href=&#34;http://gss.norc.org/&#34;&gt;General Social Survey&lt;/a&gt; has only been available in PDF. Stata code for &lt;em&gt;reltrad&lt;/em&gt; is available from &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2016/02/Stata_coding_reltrad_2_19_2016.pdf&#34;&gt;Lifeway Research&lt;/a&gt;. Lifeway also published &lt;a href=&#34;http://lifewayresearch.com/wp-content/uploads/2017/02/reltrad-R-Coding-2.19.2016.pdf&#34;&gt;R code&lt;/a&gt;. Ryan Burge has Stata code up on Github: &lt;a href=&#34;https://github.com/ryanburge/reltrad&#34;&gt;https://github.com/ryanburge/reltrad&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here, I am providing a link to my repository with an R translation of the code that is more reproducible. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by &lt;span class=&#34;citation&#34;&gt;(Stetzer and Burge 2016)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Here, I am providing a link to my repository with an R translation of the code that is more reproducible. I apply this to the 1972-2016 GSS combined data file. Note that I do incorporate the corrections suggested by &lt;span class=&#34;citation&#34;&gt;(&lt;a href=&#34;#ref-stetzerReltradCodingProblems2016&#34; role=&#34;doc-biblioref&#34;&gt;Stetzer and Burge 2016&lt;/a&gt;)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;The code takes a GSS datafile and then recodes religious affiliation into the &lt;em&gt;reltrad&lt;/em&gt; scheme created by Steensland et al. It breaks the US population into Conservative Protestant, Mainline Protestant, Black Protestant, Jewish, Other, and Non-Affiliated.&lt;/p&gt;
 &lt;p&gt;I’ve written this code in vanilla R, but resorted to the &lt;em&gt;car&lt;/em&gt; package for easier recoding. The code is pretty well commented, but tweet at me or email me if you have questions. It’s also bad code that I wrote a long while ago. I’d do this differently with dplyr.&lt;/p&gt;
 &lt;p&gt;First, here’s how to get the NORC data down:&lt;/p&gt;
@@ -151,148 +162,148 @@ print(
 ## |          Column Percent | 
 ## |-------------------------|
 ## 
-## =========================================================================
-##            gss$reltrad
-## gss$yer    Blck Pr   Cnsrv P   Jewish   Mnln Pr    None   Other   Rmn Cth
-## -------------------------------------------------------------------------
-## 1972          220       264       48       450      83      31       440 
-##              14.3%     17.2%     3.1%     29.3%    5.4%    2.0%     28.6%
-##               4.5%      2.0%     4.0%      3.8%    1.2%    1.8%      2.8%
-## -------------------------------------------------------------------------
-## 1973          135       298       41       425      99      34       397 
-##               9.4%     20.9%     2.9%     29.7%    6.9%    2.4%     27.8%
-##               2.8%      2.2%     3.4%      3.6%    1.4%    2.0%      2.5%
-## -------------------------------------------------------------------------
-## 1974          128       309       45       428     104       8       389 
-##               9.1%     21.9%     3.2%     30.3%    7.4%    0.6%     27.6%
-##               2.6%      2.3%     3.7%      3.6%    1.5%    0.5%      2.5%
-## -------------------------------------------------------------------------
-## 1975          122       303       23       459     109      17       377 
-##               8.7%     21.5%     1.6%     32.6%    7.7%    1.2%     26.7%
-##               2.5%      2.2%     1.9%      3.9%    1.5%    1.0%      2.4%
-## -------------------------------------------------------------------------
-## 1976           98       337       26       414     110      14       410 
-##               7.0%     23.9%     1.8%     29.4%    7.8%    1.0%     29.1%
-##               2.0%      2.5%     2.2%      3.5%    1.5%    0.8%      2.6%
-## -------------------------------------------------------------------------
-## 1977          130       328       32       437      90      17       395 
-##               9.1%     23.0%     2.2%     30.6%    6.3%    1.2%     27.6%
-##               2.7%      2.4%     2.7%      3.7%    1.3%    1.0%      2.5%
-## -------------------------------------------------------------------------
-## 1978          132       345       29       416     116      17       403 
-##               9.1%     23.7%     2.0%     28.5%    8.0%    1.2%     27.6%
-##               2.7%      2.6%     2.4%      3.5%    1.6%    1.0%      2.5%
-## -------------------------------------------------------------------------
-## 1980          109       336       28       397     100      29       371 
-##               8.0%     24.5%     2.0%     29.0%    7.3%    2.1%     27.1%
-##               2.3%      2.5%     2.3%      3.3%    1.4%    1.7%      2.3%
-## -------------------------------------------------------------------------
-## 1982          114       320       32       431     106      18       385 
-##               8.1%     22.8%     2.3%     30.7%    7.5%    1.3%     27.4%
-##               2.4%      2.4%     2.7%      3.6%    1.5%    1.1%      2.4%
-## -------------------------------------------------------------------------
-## 1983          115       346       40       393     119      24       450 
-##               7.7%     23.3%     2.7%     26.4%    8.0%    1.6%     30.3%
-##               2.4%      2.6%     3.3%      3.3%    1.7%    1.4%      2.8%
-## -------------------------------------------------------------------------
-## 1984          117       366       26       307     100      22       402 
-##               8.7%     27.3%     1.9%     22.9%    7.5%    1.6%     30.0%
-##               2.4%      2.7%     2.2%      2.6%    1.4%    1.3%      2.5%
-## -------------------------------------------------------------------------
-## 1985          114       424       33       323     109      22       405 
-##               8.0%     29.7%     2.3%     22.6%    7.6%    1.5%     28.3%
-##               2.4%      3.1%     2.7%      2.7%    1.5%    1.3%      2.6%
-## -------------------------------------------------------------------------
-## 1986          123       374       37       293     101      30       403 
-##               9.0%     27.5%     2.7%     21.5%    7.4%    2.2%     29.6%
-##               2.5%      2.8%     3.1%      2.5%    1.4%    1.8%      2.5%
-## -------------------------------------------------------------------------
-## 1987          137       374       19       327     103      29       361 
-##              10.1%     27.7%     1.4%     24.2%    7.6%    2.1%     26.7%
-##               2.8%      2.8%     1.6%      2.8%    1.4%    1.7%      2.3%
-## -------------------------------------------------------------------------
-## 1988          116       370       30       281     114      41       401 
-##               8.6%     27.3%     2.2%     20.8%    8.4%    3.0%     29.6%
-##               2.4%      2.7%     2.5%      2.4%    1.6%    2.4%      2.5%
-## -------------------------------------------------------------------------
-## 1989          110       371       23       335     120      33       401 
-##               7.9%     26.6%     1.7%     24.0%    8.6%    2.4%     28.8%
-##               2.3%      2.7%     1.9%      2.8%    1.7%    1.9%      2.5%
-## -------------------------------------------------------------------------
-## 1990          105       315       26       322     106      45       335 
-##               8.4%     25.1%     2.1%     25.7%    8.5%    3.6%     26.7%
-##               2.2%      2.3%     2.2%      2.7%    1.5%    2.7%      2.1%
-## -------------------------------------------------------------------------
-## 1991          144       409       29       295      95      25       407 
-##              10.3%     29.1%     2.1%     21.0%    6.8%    1.8%     29.0%
-##               3.0%      3.0%     2.4%      2.5%    1.3%    1.5%      2.6%
-## -------------------------------------------------------------------------
-## 1993          119       442       33       314     143      44       368 
-##               8.1%     30.2%     2.3%     21.5%    9.8%    3.0%     25.2%
-##               2.5%      3.3%     2.7%      2.6%    2.0%    2.6%      2.3%
-## -------------------------------------------------------------------------
-## 1994          231       727       57       565     267     112       803 
-##               8.4%     26.3%     2.1%     20.5%    9.7%    4.1%     29.1%
-##               4.8%      5.4%     4.7%      4.8%    3.7%    6.6%      5.1%
-## -------------------------------------------------------------------------
-## 1996          242       705       61       523     345     153       703 
-##               8.9%     25.8%     2.2%     19.1%   12.6%    5.6%     25.7%
-##               5.0%      5.2%     5.1%      4.4%    4.8%    9.0%      4.4%
-## -------------------------------------------------------------------------
-## 1998          224       671       49       458     383      77       731 
-##               8.6%     25.9%     1.9%     17.7%   14.8%    3.0%     28.2%
-##               4.6%      5.0%     4.1%      3.9%    5.4%    4.5%      4.6%
-## -------------------------------------------------------------------------
-## 2000          246       604       63       453     397      98       716 
-##               9.5%     23.4%     2.4%     17.6%   15.4%    3.8%     27.8%
-##               5.1%      4.5%     5.2%      3.8%    5.6%    5.8%      4.5%
-## -------------------------------------------------------------------------
-## 2002          210       582       41       459     379      97       700 
-##               8.5%     23.6%     1.7%     18.6%   15.4%    3.9%     28.4%
-##               4.3%      4.3%     3.4%      3.9%    5.3%    5.7%      4.4%
-## -------------------------------------------------------------------------
-## 2004          193       607       58       387     393     113       692 
-##               7.9%     24.8%     2.4%     15.8%   16.1%    4.6%     28.3%
-##               4.0%      4.5%     4.8%      3.3%    5.5%    6.7%      4.4%
-## -------------------------------------------------------------------------
-## 2006          337       901       86       599     710     128      1202 
-##               8.5%     22.7%     2.2%     15.1%   17.9%    3.2%     30.3%
-##               7.0%      6.7%     7.1%      5.1%   10.0%    7.5%      7.6%
-## -------------------------------------------------------------------------
-## 2008          151       386       34       262     338      62       505 
-##               8.7%     22.2%     2.0%     15.1%   19.4%    3.6%     29.1%
-##               3.1%      2.9%     2.8%      2.2%    4.7%    3.7%      3.2%
-## -------------------------------------------------------------------------
-## 2010          152       383       33       264     365      70       513 
-##               8.5%     21.5%     1.9%     14.8%   20.5%    3.9%     28.8%
-##               3.1%      2.8%     2.7%      2.2%    5.1%    4.1%      3.2%
-## -------------------------------------------------------------------------
-## 2012          127       435       29       239     388      82       477 
-##               7.1%     24.5%     1.6%     13.4%   21.8%    4.6%     26.8%
-##               2.6%      3.2%     2.4%      2.0%    5.4%    4.8%      3.0%
-## -------------------------------------------------------------------------
-## 2014          153       393       38       308     520      97       639 
-##               7.1%     18.3%     1.8%     14.3%   24.2%    4.5%     29.7%
-##               3.2%      2.9%     3.2%      2.6%    7.3%    5.7%      4.0%
-## -------------------------------------------------------------------------
-## 2016          189       490       57       291     618     107       668 
-##               7.8%     20.2%     2.4%     12.0%   25.5%    4.4%     27.6%
-##               3.9%      3.6%     4.7%      2.5%    8.7%    6.3%      4.2%
-## =========================================================================&lt;/code&gt;&lt;/pre&gt;
+## ==============================================================================
+##             gss$reltrad
+## gss$year    Blck Prt   Cnsrvt P   Jewish   Mnln Prt    None   Other   Rmn Cthl
+## ------------------------------------------------------------------------------
+## 1972            220        264       48        450      83      31        440 
+##                14.3%      17.2%     3.1%      29.3%    5.4%    2.0%      28.6%
+##                 4.5%       2.0%     4.0%       3.8%    1.2%    1.8%       2.8%
+## ------------------------------------------------------------------------------
+## 1973            135        298       41        425      99      34        397 
+##                 9.4%      20.9%     2.9%      29.7%    6.9%    2.4%      27.8%
+##                 2.8%       2.2%     3.4%       3.6%    1.4%    2.0%       2.5%
+## ------------------------------------------------------------------------------
+## 1974            128        309       45        428     104       8        389 
+##                 9.1%      21.9%     3.2%      30.3%    7.4%    0.6%      27.6%
+##                 2.6%       2.3%     3.7%       3.6%    1.5%    0.5%       2.5%
+## ------------------------------------------------------------------------------
+## 1975            122        303       23        459     109      17        377 
+##                 8.7%      21.5%     1.6%      32.6%    7.7%    1.2%      26.7%
+##                 2.5%       2.2%     1.9%       3.9%    1.5%    1.0%       2.4%
+## ------------------------------------------------------------------------------
+## 1976             98        337       26        414     110      14        410 
+##                 7.0%      23.9%     1.8%      29.4%    7.8%    1.0%      29.1%
+##                 2.0%       2.5%     2.2%       3.5%    1.5%    0.8%       2.6%
+## ------------------------------------------------------------------------------
+## 1977            130        328       32        437      90      17        395 
+##                 9.1%      23.0%     2.2%      30.6%    6.3%    1.2%      27.6%
+##                 2.7%       2.4%     2.7%       3.7%    1.3%    1.0%       2.5%
+## ------------------------------------------------------------------------------
+## 1978            132        345       29        416     116      17        403 
+##                 9.1%      23.7%     2.0%      28.5%    8.0%    1.2%      27.6%
+##                 2.7%       2.6%     2.4%       3.5%    1.6%    1.0%       2.5%
+## ------------------------------------------------------------------------------
+## 1980            109        336       28        397     100      29        371 
+##                 8.0%      24.5%     2.0%      29.0%    7.3%    2.1%      27.1%
+##                 2.3%       2.5%     2.3%       3.3%    1.4%    1.7%       2.3%
+## ------------------------------------------------------------------------------
+## 1982            114        320       32        431     106      18        385 
+##                 8.1%      22.8%     2.3%      30.7%    7.5%    1.3%      27.4%
+##                 2.4%       2.4%     2.7%       3.6%    1.5%    1.1%       2.4%
+## ------------------------------------------------------------------------------
+## 1983            115        346       40        393     119      24        450 
+##                 7.7%      23.3%     2.7%      26.4%    8.0%    1.6%      30.3%
+##                 2.4%       2.6%     3.3%       3.3%    1.7%    1.4%       2.8%
+## ------------------------------------------------------------------------------
+## 1984            117        366       26        307     100      22        402 
+##                 8.7%      27.3%     1.9%      22.9%    7.5%    1.6%      30.0%
+##                 2.4%       2.7%     2.2%       2.6%    1.4%    1.3%       2.5%
+## ------------------------------------------------------------------------------
+## 1985            114        424       33        323     109      22        405 
+##                 8.0%      29.7%     2.3%      22.6%    7.6%    1.5%      28.3%
+##                 2.4%       3.1%     2.7%       2.7%    1.5%    1.3%       2.6%
+## ------------------------------------------------------------------------------
+## 1986            123        374       37        293     101      30        403 
+##                 9.0%      27.5%     2.7%      21.5%    7.4%    2.2%      29.6%
+##                 2.5%       2.8%     3.1%       2.5%    1.4%    1.8%       2.5%
+## ------------------------------------------------------------------------------
+## 1987            137        374       19        327     103      29        361 
+##                10.1%      27.7%     1.4%      24.2%    7.6%    2.1%      26.7%
+##                 2.8%       2.8%     1.6%       2.8%    1.4%    1.7%       2.3%
+## ------------------------------------------------------------------------------
+## 1988            116        370       30        281     114      41        401 
+##                 8.6%      27.3%     2.2%      20.8%    8.4%    3.0%      29.6%
+##                 2.4%       2.7%     2.5%       2.4%    1.6%    2.4%       2.5%
+## ------------------------------------------------------------------------------
+## 1989            110        371       23        335     120      33        401 
+##                 7.9%      26.6%     1.7%      24.0%    8.6%    2.4%      28.8%
+##                 2.3%       2.7%     1.9%       2.8%    1.7%    1.9%       2.5%
+## ------------------------------------------------------------------------------
+## 1990            105        315       26        322     106      45        335 
+##                 8.4%      25.1%     2.1%      25.7%    8.5%    3.6%      26.7%
+##                 2.2%       2.3%     2.2%       2.7%    1.5%    2.7%       2.1%
+## ------------------------------------------------------------------------------
+## 1991            144        409       29        295      95      25        407 
+##                10.3%      29.1%     2.1%      21.0%    6.8%    1.8%      29.0%
+##                 3.0%       3.0%     2.4%       2.5%    1.3%    1.5%       2.6%
+## ------------------------------------------------------------------------------
+## 1993            119        442       33        314     143      44        368 
+##                 8.1%      30.2%     2.3%      21.5%    9.8%    3.0%      25.2%
+##                 2.5%       3.3%     2.7%       2.6%    2.0%    2.6%       2.3%
+## ------------------------------------------------------------------------------
+## 1994            231        727       57        565     267     112        803 
+##                 8.4%      26.3%     2.1%      20.5%    9.7%    4.1%      29.1%
+##                 4.8%       5.4%     4.7%       4.8%    3.7%    6.6%       5.1%
+## ------------------------------------------------------------------------------
+## 1996            242        705       61        523     345     153        703 
+##                 8.9%      25.8%     2.2%      19.1%   12.6%    5.6%      25.7%
+##                 5.0%       5.2%     5.1%       4.4%    4.8%    9.0%       4.4%
+## ------------------------------------------------------------------------------
+## 1998            224        671       49        458     383      77        731 
+##                 8.6%      25.9%     1.9%      17.7%   14.8%    3.0%      28.2%
+##                 4.6%       5.0%     4.1%       3.9%    5.4%    4.5%       4.6%
+## ------------------------------------------------------------------------------
+## 2000            246        604       63        453     397      98        716 
+##                 9.5%      23.4%     2.4%      17.6%   15.4%    3.8%      27.8%
+##                 5.1%       4.5%     5.2%       3.8%    5.6%    5.8%       4.5%
+## ------------------------------------------------------------------------------
+## 2002            210        582       41        459     379      97        700 
+##                 8.5%      23.6%     1.7%      18.6%   15.4%    3.9%      28.4%
+##                 4.3%       4.3%     3.4%       3.9%    5.3%    5.7%       4.4%
+## ------------------------------------------------------------------------------
+## 2004            193        607       58        387     393     113        692 
+##                 7.9%      24.8%     2.4%      15.8%   16.1%    4.6%      28.3%
+##                 4.0%       4.5%     4.8%       3.3%    5.5%    6.7%       4.4%
+## ------------------------------------------------------------------------------
+## 2006            337        901       86        599     710     128       1202 
+##                 8.5%      22.7%     2.2%      15.1%   17.9%    3.2%      30.3%
+##                 7.0%       6.7%     7.1%       5.1%   10.0%    7.5%       7.6%
+## ------------------------------------------------------------------------------
+## 2008            151        386       34        262     338      62        505 
+##                 8.7%      22.2%     2.0%      15.1%   19.4%    3.6%      29.1%
+##                 3.1%       2.9%     2.8%       2.2%    4.7%    3.7%       3.2%
+## ------------------------------------------------------------------------------
+## 2010            152        383       33        264     365      70        513 
+##                 8.5%      21.5%     1.9%      14.8%   20.5%    3.9%      28.8%
+##                 3.1%       2.8%     2.7%       2.2%    5.1%    4.1%       3.2%
+## ------------------------------------------------------------------------------
+## 2012            127        435       29        239     388      82        477 
+##                 7.1%      24.5%     1.6%      13.4%   21.8%    4.6%      26.8%
+##                 2.6%       3.2%     2.4%       2.0%    5.4%    4.8%       3.0%
+## ------------------------------------------------------------------------------
+## 2014            153        393       38        308     520      97        639 
+##                 7.1%      18.3%     1.8%      14.3%   24.2%    4.5%      29.7%
+##                 3.2%       2.9%     3.2%       2.6%    7.3%    5.7%       4.0%
+## ------------------------------------------------------------------------------
+## 2016            189        490       57        291     618     107        668 
+##                 7.8%      20.2%     2.4%      12.0%   25.5%    4.4%      27.6%
+##                 3.9%       3.6%     4.7%       2.5%    8.7%    6.3%       4.2%
+## ==============================================================================&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;references&#34; class=&#34;section level3 unnumbered&#34;&gt;
 &lt;h3&gt;References&lt;/h3&gt;
-&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
-&lt;div id=&#34;ref-sheltonBlackReltradMeasuring2017&#34;&gt;
-&lt;p&gt;Shelton, Jason E., and Ryon J. Cobb. 2017. “Black Reltrad: Measuring Religious Diversity and Commonality Among African Americans.” &lt;em&gt;Journal for the Scientific Study of Religion&lt;/em&gt; 56 (4): 737–64. &lt;a href=&#34;https://doi.org/10/gfgw25&#34;&gt;https://doi.org/10/gfgw25&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body hanging-indent&#34;&gt;
+&lt;div id=&#34;ref-sheltonBlackReltradMeasuring2017&#34; class=&#34;csl-entry&#34;&gt;
+Shelton, Jason E., and Ryon J. Cobb. 2017. &lt;span&gt;“Black &lt;span&gt;Reltrad&lt;/span&gt;: &lt;span&gt;Measuring Religious Diversity&lt;/span&gt; and &lt;span&gt;Commonality Among African Americans&lt;/span&gt;.”&lt;/span&gt; &lt;em&gt;Journal for the Scientific Study of Religion&lt;/em&gt; 56 (4): 737–64. &lt;a href=&#34;https://doi.org/gfgw25&#34;&gt;https://doi.org/gfgw25&lt;/a&gt;.
 &lt;/div&gt;
-&lt;div id=&#34;ref-steenslandMeasureAmericanReligion2000&#34;&gt;
-&lt;p&gt;Steensland, B., L. D. Robinson, W. B. Wilcox, J. Z. Park, M. D. Regnerus, and R. D. Woodberry. 2000. “The Measure of American Religion: Toward Improving the State of the Art.” &lt;em&gt;Social Forces&lt;/em&gt; 79 (1): 291–318. &lt;a href=&#34;https://doi.org/10/db9hrh&#34;&gt;https://doi.org/10/db9hrh&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;ref-steenslandMeasureAmericanReligion2000&#34; class=&#34;csl-entry&#34;&gt;
+Steensland, B., L. D. Robinson, W. B. Wilcox, J. Z. Park, M. D. Regnerus, and R. D. Woodberry. 2000. &lt;span&gt;“The &lt;span&gt;Measure&lt;/span&gt; of &lt;span&gt;American Religion&lt;/span&gt;: &lt;span&gt;Toward Improving&lt;/span&gt; the &lt;span&gt;State&lt;/span&gt; of the &lt;span&gt;Art&lt;/span&gt;.”&lt;/span&gt; &lt;em&gt;Social Forces&lt;/em&gt; 79 (1): 291–318. &lt;a href=&#34;https://doi.org/db9hrh&#34;&gt;https://doi.org/db9hrh&lt;/a&gt;.
 &lt;/div&gt;
-&lt;div id=&#34;ref-stetzerReltradCodingProblems2016&#34;&gt;
-&lt;p&gt;Stetzer, Ed, and Ryan P. Burge. 2016. “Reltrad Coding Problems and a New Repository.” &lt;em&gt;Politics and Religion&lt;/em&gt; 9 (01): 187–90. &lt;a href=&#34;https://doi.org/10/gfkc5x&#34;&gt;https://doi.org/10/gfkc5x&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;ref-stetzerReltradCodingProblems2016&#34; class=&#34;csl-entry&#34;&gt;
+Stetzer, Ed, and Ryan P. Burge. 2016. &lt;span&gt;“Reltrad &lt;span&gt;Coding Problems&lt;/span&gt; and a &lt;span&gt;New Repository&lt;/span&gt;.”&lt;/span&gt; &lt;em&gt;Politics and Religion&lt;/em&gt; 9 (01): 187–90. &lt;a href=&#34;https://doi.org/gfkc5x&#34;&gt;https://doi.org/gfkc5x&lt;/a&gt;.
 &lt;/div&gt;
-&lt;div id=&#34;ref-woodberryMeasureAmericanReligious2012&#34;&gt;
-&lt;p&gt;Woodberry, R. D., J. Z. Park, L. A. Kellstedt, M. D. Regnerus, and B. Steensland. 2012. “The Measure of American Religious Traditions: Theoretical and Measurement Considerations.” &lt;em&gt;Social Forces&lt;/em&gt; 91 (1): 65–73. &lt;a href=&#34;https://doi.org/10.1093/sf/sos121&#34;&gt;https://doi.org/10.1093/sf/sos121&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;ref-woodberryMeasureAmericanReligious2012&#34; class=&#34;csl-entry&#34;&gt;
+Woodberry, R. D., J. Z. Park, L. A. Kellstedt, M. D. Regnerus, and B. Steensland. 2012. &lt;span&gt;“The &lt;span&gt;Measure&lt;/span&gt; of &lt;span&gt;American Religious Traditions&lt;/span&gt;: &lt;span&gt;Theoretical&lt;/span&gt; and &lt;span&gt;Measurement Considerations&lt;/span&gt;.”&lt;/span&gt; &lt;em&gt;Social Forces&lt;/em&gt; 91 (1): 65–73. &lt;a href=&#34;https://doi.org/10.1093/sf/sos121&#34;&gt;https://doi.org/10.1093/sf/sos121&lt;/a&gt;.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -398,15 +409,6 @@ print(
 
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>The Negative Relationship between Size and the Probability of Weekly Attendance in Churches in the United States</title>
-      <link>https://davideagle.netlify.com/publication/2016-01-01_eagle_negative_2016/</link>
-      <pubDate>Fri, 01 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://davideagle.netlify.com/publication/2016-01-01_eagle_negative_2016/</guid>
-      <description></description>
     </item>
     
   </channel>

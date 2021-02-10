@@ -12,7 +12,7 @@ header:
 categories:
 - Measuring religion
 - R
-bibliography: /Users/dee4/Box Sync/Projects/BibTexFile/MyLibrary.bib
+bibliography: /Users/dee4/Box/Projects/BibTexFile/MyLibrary.bib
 ---
 Haven't you always wanted an easy to access R script to create the famous _reltrad_ religious categorizaton in the General Social Survey? Well, today is your lucky day.
 
