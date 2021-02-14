@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  11 FEB 2021 09:55
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  14 FEB 2021 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,6 +23,18 @@ File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(/usr/local/texlive/2018/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
+\ttl@box=\box26
+\beforetitleunit=\skip43
+\aftertitleunit=\skip44
+\ttl@plus=\dimen103
+\ttl@minus=\dimen104
+\ttl@toksa=\toks14
+\titlewidth=\dimen105
+\titlewidthlast=\dimen106
+\titlewidthfirst=\dimen107
+)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
 Invalid UTF-8 byte or sequence at line 3 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 3 replaced by U+FFFD.
@@ -30,30 +42,40 @@ Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip43
-\LTright=\skip44
-\LTpre=\skip45
-\LTpost=\skip46
+\LTleft=\skip45
+\LTright=\skip46
+\LTpre=\skip47
+\LTpost=\skip48
 \LTchunksize=\count88
-\LTcapwidth=\dimen103
-\LT@head=\box26
-\LT@firsthead=\box27
-\LT@foot=\box28
-\LT@lastfoot=\box29
+\LTcapwidth=\dimen108
+\LT@head=\box27
+\LT@firsthead=\box28
+\LT@foot=\box29
+\LT@lastfoot=\box30
 \LT@cols=\count89
 \LT@rows=\count90
 \c@LT@tables=\count91
 \c@LT@chunks=\count92
-\LT@p@ftn=\toks14
+\LT@p@ftn=\toks15
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/apacite/apacite.sty
 Package: apacite 2013/07/21 v6.03 APA citation
 \c@BibCnt=\count93
-\bibleftmargin=\skip47
-\bibindent=\skip48
-\bibparsep=\skip49
-\bibitemsep=\skip50
-\biblabelsep=\skip51
+\bibleftmargin=\skip49
+\bibindent=\skip50
+\bibparsep=\skip51
+\bibitemsep=\skip52
+\biblabelsep=\skip53
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
+Package: array 2018/04/07 v2.4g Tabular extension package (FMi)
+\col@sep=\dimen109
+\ar@mcellbox=\box31
+\extrarowheight=\dimen110
+\NC@list=\toks16
+\extratabsurround=\skip54
+\backup@length=\skip55
+\ar@cellbox=\box32
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/datetime/datetime.sty
 Package: datetime 2015/03/20 v2.60 Date Time Package
@@ -75,8 +97,8 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (/usr/local/texlive/2018/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks15
-\XKV@tempa@toks=\toks16
+\XKV@toks=\toks17
+\XKV@tempa@toks=\toks18
 
 (/usr/local/texlive/2018/texmf-dist/tex/generic/xkeyval/keyval.tex))
 \XKV@depth=\count95
@@ -95,8 +117,8 @@ Package: fcnumparser 2017/06/15
 ))
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks17
-\ex@=\dimen104
+\@emptytoks=\toks19
+\ex@=\dimen111
 )
 \c@padzeroesN=\count97
 \fc@tmpcatcode=\count98
@@ -129,8 +151,8 @@ put line 308.
 \dayofyear=\count119
 \dayofweek=\count120
 LaTeX Info: Redefining \today on input line 736.
-\dt@a=\toks18
-\dt@b=\toks19
+\dt@a=\toks20
+\dt@b=\toks21
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2018/03/24 v5.7 Page Geometry
@@ -148,23 +170,23 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@cnth=\count121
 \Gm@cntv=\count122
 \c@Gm@tempcnt=\count123
-\Gm@bindingoffset=\dimen105
-\Gm@wd@mp=\dimen106
-\Gm@odd@mp=\dimen107
-\Gm@even@mp=\dimen108
-\Gm@layoutwidth=\dimen109
-\Gm@layoutheight=\dimen110
-\Gm@layouthoffset=\dimen111
-\Gm@layoutvoffset=\dimen112
-\Gm@dimlist=\toks20
+\Gm@bindingoffset=\dimen112
+\Gm@wd@mp=\dimen113
+\Gm@odd@mp=\dimen114
+\Gm@even@mp=\dimen115
+\Gm@layoutwidth=\dimen116
+\Gm@layoutheight=\dimen117
+\Gm@layouthoffset=\dimen118
+\Gm@layoutvoffset=\dimen119
+\Gm@dimlist=\toks22
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\enitkv@toks@=\toks21
-\labelindent=\skip52
-\enit@outerparindent=\dimen113
-\enit@toks=\toks22
-\enit@inbox=\box30
+\enitkv@toks@=\toks23
+\labelindent=\skip56
+\enit@outerparindent=\dimen120
+\enit@toks=\toks24
+\enit@inbox=\box33
 \enitdp@description=\count124
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -210,18 +232,18 @@ Package: expl3 2018/03/05 L3 programming layer (code)
 \l__iow_line_target_int=\count134
 \l__iow_one_indent_int=\count135
 \l__iow_indent_int=\count136
-\c_zero_dim=\dimen114
-\c_max_dim=\dimen115
-\l_tmpa_dim=\dimen116
-\l_tmpb_dim=\dimen117
-\g_tmpa_dim=\dimen118
-\g_tmpb_dim=\dimen119
-\c_zero_skip=\skip53
-\c_max_skip=\skip54
-\l_tmpa_skip=\skip55
-\l_tmpb_skip=\skip56
-\g_tmpa_skip=\skip57
-\g_tmpb_skip=\skip58
+\c_zero_dim=\dimen121
+\c_max_dim=\dimen122
+\l_tmpa_dim=\dimen123
+\l_tmpb_dim=\dimen124
+\g_tmpa_dim=\dimen125
+\g_tmpb_dim=\dimen126
+\c_zero_skip=\skip57
+\c_max_skip=\skip58
+\l_tmpa_skip=\skip59
+\l_tmpb_skip=\skip60
+\g_tmpa_skip=\skip61
+\g_tmpb_skip=\skip62
 \c_zero_muskip=\muskip10
 \c_max_muskip=\muskip11
 \l_tmpa_muskip=\muskip12
@@ -294,46 +316,46 @@ Package: expl3 2018/03/05 L3 programming layer (code)
 \l__regex_submatch_int=\count266
 \l__regex_zeroth_submatch_int=\count267
 \g__regex_trace_regex_int=\count268
-\c_empty_box=\box31
-\l_tmpa_box=\box32
-\l_tmpb_box=\box33
-\g_tmpa_box=\box34
-\g_tmpb_box=\box35
-\l__box_top_dim=\dimen120
-\l__box_bottom_dim=\dimen121
-\l__box_left_dim=\dimen122
-\l__box_right_dim=\dimen123
-\l__box_top_new_dim=\dimen124
-\l__box_bottom_new_dim=\dimen125
-\l__box_left_new_dim=\dimen126
-\l__box_right_new_dim=\dimen127
-\l__box_internal_box=\box36
-\l__coffin_internal_box=\box37
-\l__coffin_internal_dim=\dimen128
-\l__coffin_offset_x_dim=\dimen129
-\l__coffin_offset_y_dim=\dimen130
-\l__coffin_x_dim=\dimen131
-\l__coffin_y_dim=\dimen132
-\l__coffin_x_prime_dim=\dimen133
-\l__coffin_y_prime_dim=\dimen134
-\c_empty_coffin=\box38
-\l__coffin_aligned_coffin=\box39
-\l__coffin_aligned_internal_coffin=\box40
-\l_tmpa_coffin=\box41
-\l_tmpb_coffin=\box42
-\l__coffin_display_coffin=\box43
-\l__coffin_display_coord_coffin=\box44
-\l__coffin_display_pole_coffin=\box45
-\l__coffin_display_offset_dim=\dimen135
-\l__coffin_display_x_dim=\dimen136
-\l__coffin_display_y_dim=\dimen137
-\l__coffin_bounding_shift_dim=\dimen138
-\l__coffin_left_corner_dim=\dimen139
-\l__coffin_right_corner_dim=\dimen140
-\l__coffin_bottom_corner_dim=\dimen141
-\l__coffin_top_corner_dim=\dimen142
-\l__coffin_scaled_total_height_dim=\dimen143
-\l__coffin_scaled_width_dim=\dimen144
+\c_empty_box=\box34
+\l_tmpa_box=\box35
+\l_tmpb_box=\box36
+\g_tmpa_box=\box37
+\g_tmpb_box=\box38
+\l__box_top_dim=\dimen127
+\l__box_bottom_dim=\dimen128
+\l__box_left_dim=\dimen129
+\l__box_right_dim=\dimen130
+\l__box_top_new_dim=\dimen131
+\l__box_bottom_new_dim=\dimen132
+\l__box_left_new_dim=\dimen133
+\l__box_right_new_dim=\dimen134
+\l__box_internal_box=\box39
+\l__coffin_internal_box=\box40
+\l__coffin_internal_dim=\dimen135
+\l__coffin_offset_x_dim=\dimen136
+\l__coffin_offset_y_dim=\dimen137
+\l__coffin_x_dim=\dimen138
+\l__coffin_y_dim=\dimen139
+\l__coffin_x_prime_dim=\dimen140
+\l__coffin_y_prime_dim=\dimen141
+\c_empty_coffin=\box41
+\l__coffin_aligned_coffin=\box42
+\l__coffin_aligned_internal_coffin=\box43
+\l_tmpa_coffin=\box44
+\l_tmpb_coffin=\box45
+\l__coffin_display_coffin=\box46
+\l__coffin_display_coord_coffin=\box47
+\l__coffin_display_pole_coffin=\box48
+\l__coffin_display_offset_dim=\dimen142
+\l__coffin_display_x_dim=\dimen143
+\l__coffin_display_y_dim=\dimen144
+\l__coffin_bounding_shift_dim=\dimen145
+\l__coffin_left_corner_dim=\dimen146
+\l__coffin_right_corner_dim=\dimen147
+\l__coffin_bottom_corner_dim=\dimen148
+\l__coffin_top_corner_dim=\dimen149
+\l__coffin_scaled_total_height_dim=\dimen150
+\l__coffin_scaled_width_dim=\dimen151
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/l3kernel/l3xdvipdfmx.def
 File: l3xdvidpfmx.def 2017/03/18 v L3 Experimental driver: xdvipdfmx
@@ -359,9 +381,9 @@ X
 \l__fontspec_emdef_int=\count280
 \l__fontspec_strong_int=\count281
 \l__fontspec_strongdef_int=\count282
-\l__fontspec_tmpa_dim=\dimen145
-\l__fontspec_tmpb_dim=\dimen146
-\l__fontspec_tmpc_dim=\dimen147
+\l__fontspec_tmpa_dim=\dimen152
+\l__fontspec_tmpb_dim=\dimen153
+\l__fontspec_tmpc_dim=\dimen154
 \g__file_internal_ior=\read1
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/fontenc.sty
@@ -586,7 +608,7 @@ LaTeX Info: Redefining \- on input line 4015.
 . Std/BI/OT:script=latn;language=DFLT;+onum;+liga;mapping=tex-text;"
 . - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 .................................................
-LaTeX Info: Redefining \rmfamily on input line 66.
+LaTeX Info: Redefining \rmfamily on input line 74.
 \g__fontspec_family_Consolas_int=\count284
 .................................................
 . fontspec info: "defining-font"
@@ -625,20 +647,20 @@ LaTeX Info: Redefining \rmfamily on input line 66.
 . \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
 . \tex_hyphenchar:D \font =-1\scan_stop: 
 .................................................
-LaTeX Info: Redefining \ttfamily on input line 67.
+LaTeX Info: Redefining \ttfamily on input line 75.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
 s
-\f@nch@headwidth=\skip59
-\f@nch@O@elh=\skip60
-\f@nch@O@erh=\skip61
-\f@nch@O@olh=\skip62
-\f@nch@O@orh=\skip63
-\f@nch@O@elf=\skip64
-\f@nch@O@erf=\skip65
-\f@nch@O@olf=\skip66
-\f@nch@O@orf=\skip67
+\f@nch@headwidth=\skip63
+\f@nch@O@elh=\skip64
+\f@nch@O@erh=\skip65
+\f@nch@O@olh=\skip66
+\f@nch@O@orh=\skip67
+\f@nch@O@elf=\skip68
+\f@nch@O@erf=\skip69
+\f@nch@O@olf=\skip70
+\f@nch@O@orf=\skip71
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
@@ -692,7 +714,7 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen148
+\@linkdim=\dimen155
 \Hy@linkcounter=\count285
 \Hy@pagecounter=\count286
 
@@ -719,10 +741,10 @@ Package hyperref Info: Bookmarks ON on input line 4762.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen149
+\XeTeXLinkMargin=\dimen156
 \Fld@menulength=\count289
-\Field@Width=\dimen150
-\Fld@charsize=\dimen151
+\Field@Width=\dimen157
+\Fld@charsize=\dimen158
 Package hyperref Info: Hyper figures OFF on input line 6369.
 Package hyperref Info: Link nesting OFF on input line 6374.
 Package hyperref Info: Hyper index ON on input line 6377.
@@ -748,7 +770,7 @@ File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
 Package: stringenc 2016/05/16 v1.11 Convert strings between diff. encodings (HO
 )
 )
-\pdfm@box=\box46
+\pdfm@box=\box49
 \c@Hy@AnnotLevel=\count293
 \HyField@AnnotCount=\count294
 \Fld@listcount=\count295
@@ -759,7 +781,7 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip68
+\Hy@SectionHShift=\skip72
 )
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
@@ -777,24 +799,24 @@ LaTeX Warning: Unused global option(s):
 (./EagleCV.aux)
 \openout1 = `EagleCV.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 108.
-LaTeX Font Info:    ... okay on input line 108.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
 \c@maskedRefs=\count299
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/apacite/english.apc
@@ -848,68 +870,68 @@ File: fc-english.def 2016/01/12
 .................................................
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 108.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 108.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 108.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 108.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 108.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 108.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 108.
-LaTeX Font Info:    Redeclaring math accent \check on input line 108.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 108.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 108.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 108.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 108.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 108.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 116.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 116.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 116.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 116.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 116.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 116.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 116.
+LaTeX Font Info:    Redeclaring math accent \check on input line 116.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 116.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 116.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 116.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 116.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 116.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 108.
+(Font)              `operators' in the math version `normal' on input line 116.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/Garamond3LTStd(0)/m/n on input line 
-108.
+116.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 108.
+(Font)              `operators' in the math version `bold' on input line 116.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/Garamond3LTStd(0)/m/n on input line
- 108.
+ 116.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/Garamond3LTStd(0)/m/n --> TU/Garamond3LTStd(0)/m/n o
-n input line 108.
+n input line 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/Garamond3LTStd(0)/m/it on input lin
-e 108.
+e 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/Garamond3LTStd(0)/bx/n on input lin
-e 108.
+e 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 108.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/Consolas(0)/m/n on input line 108.
+(Font)                  OT1/cmtt/m/n --> TU/Consolas(0)/m/n on input line 116.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/Garamond3LTStd(0)/m/n --> TU/Garamond3LTStd(0)/bx/n 
-on input line 108.
+on input line 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/Garamond3LTStd(0)/bx/it on input l
-ine 108.
+ine 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 108.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 116.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/Consolas(0)/bx/n on input line 108.
+(Font)                  OT1/cmtt/m/n --> TU/Consolas(0)/bx/n on input line 116.
 
-\AtBeginShipoutBox=\box47
-Package hyperref Info: Link coloring ON on input line 108.
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring ON on input line 116.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -918,82 +940,68 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count300
 )
-LaTeX Info: Redefining \ref on input line 108.
-LaTeX Info: Redefining \pageref on input line 108.
-LaTeX Info: Redefining \nameref on input line 108.
+LaTeX Info: Redefining \ref on input line 116.
+LaTeX Info: Redefining \pageref on input line 116.
+LaTeX Info: Redefining \nameref on input line 116.
 
 (./EagleCV.out) (./EagleCV.out)
 \@outlinefile=\write3
 \openout3 = `EagleCV.out'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--126
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 126.
+(Font)              <10.95> on input line 137.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 126.
+(Font)              <8> on input line 137.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 126.
+(Font)              <6> on input line 137.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 130.
+(Font)              <7> on input line 141.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 130.
+(Font)              <5> on input line 141.
 
-Overfull \hbox (1.825pt too wide) in paragraph at lines 122--134
+Overfull \hbox (1.825pt too wide) in paragraph at lines 133--145
 $[]$ $[]$ 
  []
 
-(./employment.tex) (./education.tex) (./publications.tex
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 2--5
-[]
+(./employment.tex
+Overfull \hbox (6.94714pt too wide) in alignment at lines 3--11
+ [] [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 2--5
-
+) (./education.tex
+Overfull \hbox (23.99998pt too wide) in alignment at lines 2--8
+ [] [] 
  []
 
-
-Overfull \hbox (22.67548pt too wide) in paragraph at lines 12--13
-\TU/Garamond3LTStd(0)/m/n/10.95 and Five Global Contexts.” \TU/Garamond3LTStd(0
-)/m/it/10.95 The Journal of Religion and Health\TU/Garamond3LTStd(0)/m/n/10.95 
-, 59(3):1666–1686. doi:[][]10.1007/s10943-
- []
-
-
-Overfull \hbox (3.69904pt too wide) in paragraph at lines 14--15
-\TU/Garamond3LTStd(0)/m/n/10.95 der Differences among Clergy.” \TU/Garamond3LTS
-td(0)/m/it/10.95 Socius \TU/Garamond3LTStd(0)/m/n/10.95 5:2378023119873821. doi
-:[][]10.1177/2378023119873821[][]. 
- []
-
-[1
+) (./publications.tex [1
 
 ] [2]
-Overfull \hbox (6.12756pt too wide) in paragraph at lines 50--51
+Overfull \hbox (3.39006pt too wide) in paragraph at lines 52--53
 \TU/Garamond3LTStd(0)/m/it/10.95 Journal for the Scientific Study of Religion\T
 U/Garamond3LTStd(0)/m/n/10.95 , 50(1): 116–132. doi:[][]10.1111/j.1468-5906.201
-0.01555.x[][]. 
+0.01555.x[][] 
  []
 
 
-Overfull \hbox (9.17902pt too wide) in paragraph at lines 81--82
-[]\TU/Garamond3LTStd(0)/bx/n/10.95 Eagle, D.E.\TU/Garamond3LTStd(0)/m/n/10.95 .
- 2019. “The Growth of the Megachurch.” In Hunt, S.J. (ed.) \TU/Garamond3LTStd(0
-)/m/it/10.95 Handbook of Megachurches.
+Overfull \hbox (10.89697pt too wide) in paragraph at lines 81--82
+[]\TU/Garamond3LTStd(0)/bx/n/10.95 Eagle, D.E. \TU/Garamond3LTStd(0)/m/n/10.95 
+(2019). “The Growth of the megachurch.” In Hunt, S.J. (Ed.), \TU/Garamond3LTStd
+(0)/m/it/10.95 Handbook of Megachurches
  []
 
-[3]
-Overfull \hbox (12.79pt too wide) in paragraph at lines 82--83
-\TU/Garamond3LTStd(0)/m/n/10.95 and Universities.” Book review. \TU/Garamond3LT
+
+Overfull \hbox (7.6216pt too wide) in paragraph at lines 83--84
+\TU/Garamond3LTStd(0)/m/n/10.95 and universities.” Book review. \TU/Garamond3LT
 Std(0)/m/it/10.95 Teaching Sociology\TU/Garamond3LTStd(0)/m/n/10.95 . Online Fi
-rst. doi:[][]10.1177/0092055X18814410[][]. 
+rst. doi:[][]10.1177/0092055X18814410[][] 
  []
 
-) (./grants.tex
+[3]) (./grants.tex
 Overfull \hbox (45.3209pt too wide) in alignment at lines 2--29
  [] [] 
  []
@@ -1004,24 +1012,38 @@ Overfull \hbox (45.3209pt too wide) in alignment at lines 29--45
  []
 
 [4]) (./teaching.tex
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 2--10
-[]
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 4--10
+[][] 
  []
 
 
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 11--20
-[]
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 13--20
+[][] 
  []
 
 ) (./talks.tex
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 21--1
-[]
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 23--1
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--1
+
+ []
+
+
+Overfull \hbox (2.68556pt too wide) in alignment at lines 3--12
+ [] [] 
+ []
+
+
+Overfull \hbox (2.68556pt too wide) in alignment at lines 15--57
+ [] [] 
  []
 
 [5]
-Underfull \hbox (badness 5417) in paragraph at lines 61--62
-[]|\TU/Garamond3LTStd(0)/bx/n/10.95 Eagle, D.E.\TU/Garamond3LTStd(0)/m/n/10.95 
-“Author Meets Critic Panel Respondent for Reginald Bibby’s
+Overfull \hbox (2.68556pt too wide) in alignment at lines 57--78
+ [] [] 
  []
 
 [6]) (./awards.tex
@@ -1031,40 +1053,26 @@ Overfull \hbox (45.3209pt too wide) in alignment at lines 3--20
 
 [7]) (./activities.tex
 Overfull \hbox (23.99998pt too wide) in paragraph at lines 6--14
-[] 
+[][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--33
-
- []
-
-[8])
-Overfull \hbox (23.99998pt too wide) in paragraph at lines 34--145
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 34--145
-
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 146.
-[9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 146.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 157.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 157.
  (./EagleCV.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 146.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 146.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 157.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 157.
 Package rerunfilecheck Info: File `EagleCV.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 20928 strings out of 492970
- 393141 string characters out of 6133938
- 531139 words of memory out of 5000000
- 24757 multiletter control sequences out of 15000+600000
+ 21225 strings out of 492970
+ 396826 string characters out of 6133938
+ 536004 words of memory out of 5000000
+ 25048 multiletter control sequences out of 15000+600000
  533603 words of font info for 61 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 43i,11n,83p,10390b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,11n,83p,10390b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on EagleCV.pdf (9 pages).
+Output written on EagleCV.pdf (8 pages).
