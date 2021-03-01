@@ -1,19 +1,20 @@
 % !TeX program = xelatex
 %!TEX TS-program = xelatex
 %%%%This is David Eagle's (http://www.davideagle.org) resume template
-\documentclass[11pt, letter]{article}
+\documentclass[12pt, letter]{article}
 
 % Identifying information
 \newcommand{\Title}{Curriculum Vit\ae}
 \newcommand{\FirstName}{David}
 \newcommand{\LastName}{Eagle}
 \newcommand{\Degree}{Ph.D.}
-\newcommand{\Initials}{D.E}
+\newcommand{\Initials}{D.E.}
 \newcommand{\MyName}{\FirstName\ \LastName, \Degree}
 \newcommand{\MyRole}{Assistant Research Professor}
-\newcommand{\Tian}{\textbf{\LastName, \Initials.}}  % For citations
+\newcommand{\Eagle}{\textbf{\LastName, \Initials}}  % For citations
+\newcommand{\Tian}{\textbf{\LastName, \Initials}}  % For citations
 \newcommand{\Email}{david.eagle@duke.edu}
-\newcommand{\Website}{www.davideagle.org}
+\newcommand{\Website}{davideagle.org}
 \newcommand{\Twitter}{@davideaglephd}
 \newcommand{\Phone}{+1.919.699.6321}
 \newcommand{\Affiliation}{
@@ -22,18 +23,27 @@ Center for Health Policy and Inequalities Research\\
 Duke University
 }
 \newcommand{\Address}{
-    310 Trent Hall, Room 313\\
-    Durham, NC 27708, USA
+    Durham, NC 27708 USA
 }
 
+%change section command to make spacing smaller.
+ \usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{3ex}{0ex}
+\titlespacing{\subsection}{0pt}{2ex}{1ex}
+\titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
 % Control the font size
 \usepackage{anyfontsize}
 
 % Longtable
 \usepackage{longtable}
 
+%date fix
+\usepackage[nodayofweek]{datetime}
+
 %Bibtex
 \usepackage{apacite}
+
+\usepackage{array}
 
 
 % Useful macros
@@ -46,7 +56,7 @@ Duke University
 \newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
 
 % Set the page margins
-\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage[left=1.3in,right=1.3in,top=1in,bottom=1in]{geometry}
 
 % Increase the line spacing
 %\renewcommand{\baselinestretch}{1.1}
@@ -78,7 +88,7 @@ Duke University
     \hspace{0.2cm} -- \hspace{0.2cm}
     \Title
     \hspace{0.2cm} -- \hspace{0.2cm}
-    \monthyear\today
+    \today
 }
 \rhead{}
 \cfoot{\fontsize{10pt}{0}\selectfont \thepage}
@@ -106,7 +116,10 @@ Duke University
 \usepackage{etaremune}
 
 \begin{document}
-
+%This is for the space before and after longtables
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{2ex}
+	
 % No header for the first page
 \thispagestyle{empty}
 
@@ -126,6 +139,7 @@ Duke University
 \end{minipage}
 \begin{minipage}{.5\textwidth}
 \flushright
+Pronouns: he/him
 Email: \href{mailto:\Email}{\texttt\small{\Email}}\\
 Website: \small{\url{\Website}}\\
 Phone: \Phone\\
